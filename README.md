@@ -110,7 +110,7 @@ interface JSON {
 ```
 
 ```ts
-function destr(val: string | any): DestrValue
+function destr(val: string | any): JSONValue | undefined
 ```
 
 ## License

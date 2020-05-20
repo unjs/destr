@@ -1,6 +1,5 @@
 export type JSONObject = { [key: string]: JSONValue }
 export type JSONValue = true | false | null | string | Number | JSONObject | JSONValue[]
-export type DestrValue = JSONValue | undefined
 
 const STR_MAP = {
   true: true,
@@ -18,7 +17,7 @@ function jsonParseTransform (key: string, value: any): any {
   return value
 }
 
-export default function destr (val: string | any): DestrValue {
+export default function destr (val: string | any): JSONValue | undefined {
   if (typeof val !== 'string') {
     return val
   }
