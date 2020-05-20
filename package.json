@@ -11,18 +11,18 @@
   ],
   "scripts": {
     "bench": "yarn build && node ./bench.js",
-    "lint": "eslint --ext .ts .",
-    "test": "yarn lint",
     "build": "bili src/index.ts",
-    "release": "release-it"
+    "lint": "eslint --ext .ts .",
+    "release": "yarn test && yarn build && standard-version && git push --follow-tags && npm publish",
+    "test": "yarn lint"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "latest",
     "benchmark": "latest",
     "bili": "latest",
     "eslint": "latest",
-    "release-it": "latest",
     "rollup-plugin-typescript2": "latest",
+    "standard-version": "latest",
     "typescript": "latest"
   }
 }
