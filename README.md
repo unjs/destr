@@ -8,32 +8,35 @@
 
 ## Usage
 
-Install:
+### Node.js
+
+Install using npm or yarn:
 
 ```bash
-# NPM
 npm i destr
-
-# Yarn
+# or
 yarn add destr
 ```
 
-Import:
+Import into your Node.js project:
 
 ```js
-// ESM
-import destr from 'destr'
-
 // CommonJS
 const destr = require('destr')
+
+// ESM
+import destr from 'destr'
 ```
 
-Use:
+### Deno
 
 ```js
-// Use similar to JSON.parse
-console.log(destr('{ "works": "yay" })')
+import destr from 'https://cdn.jsdelivr.net/gh/nuxt-contrib/destr/src/index.ts'
+
+console.log(destr('{ "deno": "yay" }'))
 ```
+
+## Why?
 
 **Fast fallback to input if is not string:**
 
