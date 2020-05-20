@@ -1,6 +1,40 @@
 # destr
 
-A faster, secure and convenient alternative for [`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse):
+> A faster, secure and convenient alternative for [`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse):
+
+[![npm version][npm-v-src]][npm-v-href]
+[![npm downloads][npm-dt-src]][npm-dt-href]
+[![package phobia][packagephobia-src]][packagephobia-href]
+[![bundle phobia][bundlephobia-src]][bundlephobia-href]
+
+## Usage
+
+Install:
+
+```bash
+# NPM
+npm i destr
+
+# Yarn
+yarn add destr
+```
+
+Import:
+
+```js
+// ESM
+import destr from 'destr'
+
+// CommonJS
+const destr = require('destr')
+```
+
+Use:
+
+```js
+// Use similar to JSON.parse
+console.log(destr('{ "works": "yay" })')
+```
 
 **Fast fallback to input if is not string:**
 
@@ -49,7 +83,7 @@ JSON.parse('salam')
 destr('salam')
 ```
 
-**Avoid Prototype Pollution:**
+**Avoid prototype pollution:**
 
 ```js
 const input = '{ "user": { "__proto__": { "isAdmin": true } } }'
@@ -70,14 +104,22 @@ interface JSON {
 ```
 
 ```ts
-export declare type JSONObject = {
-    [key: string]: JSONValue;
-};
-export declare type JSONValue = true | false | null | string | JSONObject | JSONValue[];
-export declare type DestrValue = JSONValue | JSONValue[] | undefined;
-export default function destr(val: any): DestrValue;
+function destr(val: string | any): DestrValue
 ```
 
 ## License
 
-MIT
+MIT. Made with 💖
+
+<!-- Refs -->
+[npm-v-src]: https://flat.badgen.net/npm/v/destr/latest
+[npm-v-href]: https://npmjs.com/package/destr
+
+[npm-dt-src]: https://flat.badgen.net/npm/dt/destr
+[npm-dt-href]: https://npmjs.com/package/destr
+
+[packagephobia-src]: https://flat.badgen.net/packagephobia/install/destr
+[packagephobia-href]: https://packagephobia.now.sh/result?p=destr
+
+[bundlephobia-src]: https://flat.badgen.net/bundlephobia/min/destr
+[bundlephobia-href]: https://bundlephobia.com/result?p=destr
