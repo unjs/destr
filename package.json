@@ -1,6 +1,6 @@
 {
   "name": "destr",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A faster, secure and convenient alternative for JSON.parse",
   "repository": "nuxt-contrib/destr",
   "license": "MIT",
