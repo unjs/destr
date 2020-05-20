@@ -13,13 +13,15 @@
     "bench": "yarn build && node ./bench.js",
     "lint": "eslint --ext .ts .",
     "test": "yarn lint",
-    "build": "bili src/index.ts"
+    "build": "bili src/index.ts",
+    "release": "release-it"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "latest",
     "benchmark": "latest",
     "bili": "latest",
     "eslint": "latest",
+    "release-it": "latest",
     "rollup-plugin-typescript2": "latest",
     "typescript": "latest"
   }
