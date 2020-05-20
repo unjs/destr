@@ -7,7 +7,7 @@ const { log } = console
 function createSuite (name) {
   const suite = new Suite(name)
 
-  log(name)
+  log(`\n=== ${name} ==`)
   suite.on('cycle', (event) => { log(String(event.target)) })
   suite.on('complete', function () { log('Fastest is ' + this.filter('fastest').map('name')) })
 
