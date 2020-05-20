@@ -3,23 +3,22 @@ export type JSONValue = true | false | null | string | Number | JSONObject | JSO
 export type DestrValue = JSONValue | undefined
 
 const STR_MAP = {
-  'true': true,
-  'false': false,
-  'null': null,
-  'nan': NaN,
-  'infinity': Infinity,
-  'undefined': undefined
+  true: true,
+  false: false,
+  null: null,
+  nan: NaN,
+  infinity: Infinity,
+  undefined
 }
 
-
-function jsonParseTransform(key: string, value: any): any {
+function jsonParseTransform (key: string, value: any): any {
   if (key === '__proto__' || key === 'prototype' || key === 'constructor') {
     return
   }
   return value
 }
 
-export default function destr(val: string | any): DestrValue {
+export default function destr (val: string | any): DestrValue {
   if (typeof val !== 'string') {
     return val
   }

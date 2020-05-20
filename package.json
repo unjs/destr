@@ -11,13 +11,16 @@
   ],
   "scripts": {
     "bench": "yarn build && node ./bench.js",
+    "lint": "eslint --ext .ts .",
+    "test": "yarn lint",
     "build": "bili src/index.ts"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "latest",
-    "benchmark": "^2.1.4",
-    "bili": "^4.10.0",
-    "rollup-plugin-typescript2": "^0.27.1",
+    "benchmark": "latest",
+    "bili": "latest",
+    "eslint": "latest",
+    "rollup-plugin-typescript2": "latest",
     "typescript": "latest"
   }
 }
