@@ -38,9 +38,7 @@ console.log(destr('{ "deno": "yay" }'))
 
 ## Why?
 
-⚠️ Before reading cool features, please note that `destr` is not always faster! When parsing a standard JSON string it is about **3 times slower** mainly because of transform to avoid [prototype pollution](https://hueniverse.com/a-tale-of-prototype-poisoning-2610fa170061) which can lead to serious security issues if not being sanetized.
-
-In the other words, `destr` is better when input is not always a json string or from untrsuted source like request body.
+Please note that `destr` is little bit slower when parsing a standard JSON string mainly because of transform to avoid [prototype pollution](https://hueniverse.com/a-tale-of-prototype-poisoning-2610fa170061) which can lead to serious security issues if not being sanetized. In the other words, `destr` is better when input is not always a json string or from untrsuted source like request body.
 
 **Fast fallback to input if is not string:**
 
@@ -53,10 +51,10 @@ destr()
 ```
 
 ```js
-// JSON.parse x 5,363,773 ops/sec ±0.31% (96 runs sampled)
+// JSON.parse x 5,324,474 ops/sec ±0.65% (94 runs sampled)
 JSON.parse(3.14159265359)
 
-// destr x 660,537,795 ops/sec ±0.06% (86 runs sampled)
+// destr x 657,187,095 ops/sec ±0.06% (98 runs sampled)
 destr(3.14159265359)
 ```
 
@@ -71,10 +69,10 @@ destr('TRUE')
 ```
 
 ```js
-// JSON.parse x 10,432,994 ops/sec ±0.23% (94 runs sampled)
+// JSON.parse x 10,407,488 ops/sec ±0.30% (97 runs sampled)
 JSON.parse('true')
 
-// destr x 652,107,152 ops/sec ±0.11% (94 runs sampled
+// destr x 88,634,032 ops/sec ±0.32% (95 runs sampled)
 destr('true')
 ```
 
@@ -82,10 +80,10 @@ destr('true')
 
 ```js
 // Uncaught SyntaxError: Unexpected token s in JSON at position 0
-// JSON.parse (try-catch) x 248,749 ops/sec ±1.66% (93 runs sampled)
+// JSON.parse (try-catch) x 248,212 ops/sec ±1.22% (84 runs sampled
 JSON.parse('salam')
 
-// destr x 32,415,523 ops/sec ±0.57% (94 runs sampled)
+// destr x 30,867,179 ops/sec ±0.49% (94 runs sampled)
 destr('salam')
 ```
 

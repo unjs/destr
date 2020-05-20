@@ -22,6 +22,7 @@
     "bili": "latest",
     "eslint": "latest",
     "rollup-plugin-typescript2": "latest",
+    "secure-json-parse": "^2.1.0",
     "standard-version": "latest",
     "typescript": "latest"
   }

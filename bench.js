@@ -1,5 +1,6 @@
 const fs = require('fs')
 const { Suite } = require('benchmark')
+const sjson = require('secure-json-parse')
 const destr = require('./dist')
 
 const { log } = console
@@ -17,6 +18,7 @@ function createSuite (name) {
 function bench (name, val) {
   const suite = createSuite(name)
   suite.add('JSON.parse', () => { JSON.parse(val) })
+  suite.add('sjson', () => { sjson.parse(val) })
   suite.add('destr', () => { destr(val) })
   suite.run()
 }
@@ -24,6 +26,7 @@ function bench (name, val) {
 function benchTryCatch (name, val) {
   const suite = createSuite(name)
   suite.add('JSON.parse (try-catch)', () => { try { JSON.parse(val) } catch (err) { return val } })
+  suite.add('sjson (try-catch)', () => { try { sjson.parse(val) } catch (err) { return val } })
   suite.add('destr', () => { destr(val) })
   suite.run()
 }
