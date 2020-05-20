@@ -3,8 +3,7 @@
 > A faster, secure and convenient alternative for [`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse):
 
 [![npm version][npm-v-src]][npm-v-href]
-[![npm downloads][npm-dt-src]][npm-dt-href]
-[![package phobia][packagephobia-src]][packagephobia-href]
+[![npm downloads][npm-d-src]][npm-d-href]
 [![bundle phobia][bundlephobia-src]][bundlephobia-href]
 
 ## Usage
@@ -112,14 +111,14 @@ function destr(val: string | any): DestrValue
 MIT. Made with 💖
 
 <!-- Refs -->
-[npm-v-src]: https://flat.badgen.net/npm/v/destr/latest
+[npm-v-src]: https://img.shields.io/npm/v/destr?style=flat-square
 [npm-v-href]: https://npmjs.com/package/destr
 
-[npm-dt-src]: https://flat.badgen.net/npm/dt/destr
-[npm-dt-href]: https://npmjs.com/package/destr
+[npm-d-src]: https://img.shields.io/npm/dm/destr?style=flat-square
+[npm-d-href]: https://npmjs.com/package/destr
 
-[packagephobia-src]: https://flat.badgen.net/packagephobia/install/destr
-[packagephobia-href]: https://packagephobia.now.sh/result?p=destr
+[github-actions-src]: https://img.shields.io/github/workflow/status/nuxt-contrib/destr/ci/master?style=flat-square
+[github-actions-href]: https://github.com/nuxt-contrib/destr/actions?query=workflow%3Aci
 
-[bundlephobia-src]: https://flat.badgen.net/bundlephobia/min/destr
+[bundlephobia-src]: https://img.shields.io/bundlephobia/min/destr?style=flat-square
 [bundlephobia-href]: https://bundlephobia.com/result?p=destr
