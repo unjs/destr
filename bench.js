@@ -1,3 +1,4 @@
+const fs = require('fs')
 const { Suite } = require('benchmark')
 const destr = require('./dist')
 
@@ -8,7 +9,7 @@ function createSuite (name) {
 
   log(name)
   suite.on('cycle', (event) => { log(String(event.target)) })
-  suite.on('complete', () => { log('Fastest is ' + this.filter('fastest').map('name')) })
+  suite.on('complete', function () { log('Fastest is ' + this.filter('fastest').map('name')) })
 
   return suite
 }
@@ -28,7 +29,9 @@ function benchTryCatch (name, val) {
 }
 
 bench('Non-string fallback', 3.14159265359)
-
 bench('Known values', 'true')
-
 benchTryCatch('Plain string', 'salam')
+
+const pkg = fs.readFileSync('./package.json', 'utf-8')
+bench('standard object', pkg)
+benchTryCatch('invalid syntax', pkg.substr(0, pkg.length - 1))
