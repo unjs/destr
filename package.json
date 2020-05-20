@@ -1,0 +1,23 @@
+{
+  "name": "destr",
+  "version": "0.0.0",
+  "description": "",
+  "repository": "nuxt-community/destr",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "bench": "yarn build && node ./bench.js",
+    "build": "bili src/index.ts"
+  },
+  "devDependencies": {
+    "@nuxtjs/eslint-config-typescript": "latest",
+    "benchmark": "^2.1.4",
+    "bili": "^4.10.0",
+    "rollup-plugin-typescript2": "^0.27.1",
+    "typescript": "latest"
+  }
+}
