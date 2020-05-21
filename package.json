@@ -17,6 +17,7 @@
     "test": "yarn lint"
   },
   "devDependencies": {
+    "@hapi/bourne": "^2.0.0",
     "@nuxtjs/eslint-config-typescript": "latest",
     "benchmark": "latest",
     "bili": "latest",
