@@ -813,6 +813,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
+"@hapi/bourne@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@hapi/bourne/-/bourne-2.0.0.tgz#5bb2193eb685c0007540ca61d166d4e1edaf918d"
+  integrity sha512-WEezM1FWztfbzqIUbsDzFRVMxSoLy3HugVcux6KDDtTqzPsLE8NDRHfXvev66aH1i2oOKKar3/XDjbvh/OUBdg==
+
 "@nuxtjs/eslint-config-typescript@latest":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/eslint-config-typescript/-/eslint-config-typescript-2.0.0.tgz#5710a96eec648091b36432f313a200467d1daa7e"
