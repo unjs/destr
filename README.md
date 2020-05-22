@@ -31,7 +31,7 @@ import destr from 'destr'
 ### Deno
 
 ```js
-import destr from 'https://cdn.jsdelivr.net/gh/nuxt-contrib/destr/src/index.ts'
+import destr from 'https://deno.land/x/destr/src/index.ts'
 
 console.log(destr('{ "deno": "yay" }'))
 ```
