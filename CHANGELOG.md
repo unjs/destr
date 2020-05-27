@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/nuxt-contrib/destr/compare/v0.1.6...v0.1.7) (2020-05-27)
+
+
+### Bug Fixes
+
+* don't throw error on parse fail ([65e22c6](https://github.com/nuxt-contrib/destr/commit/65e22c631ef2757d0b25d77e1270f4656bca7ef8))
+
 ### [0.1.6](https://github.com/nuxt-contrib/destr/compare/v0.1.5...v0.1.6) (2020-05-27)
 
 ### [0.1.5](https://github.com/nuxt-contrib/destr/compare/v0.1.4...v0.1.5) (2020-05-27)
