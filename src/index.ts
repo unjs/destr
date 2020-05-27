@@ -32,9 +32,12 @@ export default function destr (val: string | any): JSONValue | undefined {
     return val
   }
 
-  if (suspectProtoRx.test(val) || suspectConstructorRx.test(val)) {
-    return JSON.parse(val, jsonParseTransform)
+  try {
+    if (suspectProtoRx.test(val) || suspectConstructorRx.test(val)) {
+      return JSON.parse(val, jsonParseTransform)
+    }
+    return JSON.parse(val)
+  } catch (_e) {
+    return val
   }
-
-  return JSON.parse(val)
 }
