@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.5](https://github.com/nuxt-contrib/destr/compare/v0.1.4...v0.1.5) (2020-05-27)
+
+
+### Bug Fixes
+
+* use JsonSigRx to also match numbers ([3023552](https://github.com/nuxt-contrib/destr/commit/3023552f98823699ff12382a2c4c510c34bfc60a))
+
 ### [0.1.4](https://github.com/nuxt-contrib/destr/compare/v0.1.3...v0.1.4) (2020-05-22)
 
 ### [0.1.3](https://github.com/nuxt-contrib/destr/compare/v0.1.2...v0.1.3) (2020-05-20)
