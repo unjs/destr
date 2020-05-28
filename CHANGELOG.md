@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.8](https://github.com/nuxt-contrib/destr/compare/v0.1.7...v0.1.8) (2020-05-28)
+
+
+### Bug Fixes
+
+* **types:** remove strict types ([1513a48](https://github.com/nuxt-contrib/destr/commit/1513a4809367a4389f2c2f13b79d40f9810aac19))
+
 ### [0.1.7](https://github.com/nuxt-contrib/destr/compare/v0.1.6...v0.1.7) (2020-05-27)
 
 
