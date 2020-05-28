@@ -99,18 +99,6 @@ JSON.parse(input)
 destr(input)
 ```
 
-**Better types:**
-
-```ts
-interface JSON {
-  parse(text: string, reviver?: (this: any, key: string, value: any) => any): any
-}
-```
-
-```ts
-function destr(val: string | any): JSONValue | undefined
-```
-
 ## License
 
 MIT. Made with 💖

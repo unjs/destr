@@ -1,6 +1,3 @@
-export type JSONObject = { [key: string]: JSONValue }
-export type JSONValue = true | false | null | string | Number | JSONObject | JSONValue[]
-
 // https://github.com/fastify/secure-json-parse
 // https://github.com/hapijs/bourne
 const suspectProtoRx = /"(?:_|\\u005[Ff])(?:_|\\u005[Ff])(?:p|\\u0070)(?:r|\\u0072)(?:o|\\u006[Ff])(?:t|\\u0074)(?:o|\\u006[Ff])(?:_|\\u005[Ff])(?:_|\\u005[Ff])"\s*:/
@@ -15,7 +12,7 @@ function jsonParseTransform (key: string, value: any): any {
   return value
 }
 
-export default function destr (val: string | any): JSONValue | undefined {
+export default function destr (val: any): any {
   if (typeof val !== 'string') {
     return val
   }
