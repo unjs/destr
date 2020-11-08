@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.0.1](https://github.com/nuxt-contrib/destr/compare/v1.0.0...v1.0.1) (2020-11-08)
+
+
+### Bug Fixes
+
+* don't parse numbers if potential to exceed 15 digits ([bc8c596](https://github.com/nuxt-contrib/destr/commit/bc8c5962747a9fff189e17bbdc02f760d157fdbd))
+
 ## [1.0.0](https://github.com/nuxt-contrib/destr/compare/v0.1.9...v1.0.0) (2020-06-16)
 
 ### [0.1.9](https://github.com/nuxt-contrib/destr/compare/v0.1.8...v0.1.9) (2020-05-28)
