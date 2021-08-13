@@ -38,7 +38,7 @@ console.log(destr('{ "deno": "yay" }'))
 
 ## Why?
 
-Please note that `destr` is little bit slower when parsing a standard JSON string mainly because of transform to avoid [prototype pollution](https://hueniverse.com/a-tale-of-prototype-poisoning-2610fa170061) which can lead to serious security issues if not being sanetized. In the other words, `destr` is better when input is not always a json string or from untrusted source like request body.
+Please note that `destr` is little bit slower when parsing a standard JSON string mainly because of transform to avoid [prototype pollution](https://hueniverse.com/a-tale-of-prototype-poisoning-2610fa170061) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a json string or from untrusted source like request body.
 
 **Fast fallback to input if is not string:**
 
