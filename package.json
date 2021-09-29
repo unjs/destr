@@ -2,7 +2,7 @@
   "name": "destr",
   "version": "1.1.0",
   "description": "A faster, secure and convenient alternative for JSON.parse",
-  "repository": "nuxt-contrib/destr",
+  "repository": "unjs/destr",
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
