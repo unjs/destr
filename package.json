@@ -4,18 +4,25 @@
   "description": "A faster, secure and convenient alternative for JSON.parse",
   "repository": "unjs/destr",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "bench": "yarn build && node ./bench.js",
-    "build": "siroc build",
+    "bench": "pnpm build && node ./bench.cjs",
+    "build": "unbuild",
     "lint": "eslint --ext .ts .",
-    "release": "yarn test && yarn build && standard-version && git push --follow-tags && npm publish",
-    "test": "yarn lint"
+    "release": "pnpm test && pnpm build && standard-version && git push --follow-tags && pnpm publish",
+    "test": "pnpm lint"
   },
   "devDependencies": {
     "@hapi/bourne": "latest",
@@ -24,8 +31,9 @@
     "eslint": "latest",
     "rollup-plugin-typescript2": "latest",
     "secure-json-parse": "latest",
-    "siroc": "latest",
     "standard-version": "latest",
-    "typescript": "latest"
-  }
+    "typescript": "latest",
+    "unbuild": "latest"
+  },
+  "packageManager": "pnpm@6.32.3"
 }

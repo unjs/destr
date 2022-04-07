@@ -2,7 +2,7 @@ const fs = require('fs')
 const { Suite } = require('benchmark')
 const sjson = require('secure-json-parse')
 const bourne = require('@hapi/bourne')
-const destr = require('./dist')
+const destr = require('./dist/index.cjs')
 
 const { log } = console
 

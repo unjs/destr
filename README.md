@@ -110,8 +110,8 @@ MIT. Made with 💖
 [npm-d-src]: https://img.shields.io/npm/dm/destr?style=flat-square
 [npm-d-href]: https://npmjs.com/package/destr
 
-[github-actions-src]: https://img.shields.io/github/workflow/status/nuxt-contrib/destr/ci/master?style=flat-square
-[github-actions-href]: https://github.com/nuxt-contrib/destr/actions?query=workflow%3Aci
+[github-actions-src]: https://img.shields.io/github/workflow/status/unjs/destr/ci/master?style=flat-square
+[github-actions-href]: https://github.com/unjs/destr/actions?query=workflow%3Aci
 
 [bundlephobia-src]: https://img.shields.io/bundlephobia/min/destr?style=flat-square
 [bundlephobia-href]: https://bundlephobia.com/result?p=destr
