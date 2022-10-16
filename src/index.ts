@@ -16,6 +16,7 @@ export default function destr (val: any): any {
   if (typeof val !== 'string') {
     return val
   }
+  if(val === '') { return {} }
 
   const _lval = val.toLowerCase()
   if (_lval === 'true') { return true }
