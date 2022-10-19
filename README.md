@@ -68,14 +68,6 @@ JSON.parse()
 destr()
 ```
 
-```js
-// JSON.parse x 5,324,474 ops/sec ±0.65% (94 runs sampled)
-JSON.parse(3.14159265359)
-
-// destr x 657,187,095 ops/sec ±0.06% (98 runs sampled)
-destr(3.14159265359)
-```
-
 **Fast lookup for known string values:**
 
 ```js
@@ -86,22 +78,13 @@ JSON.parse('TRUE')
 destr('TRUE')
 ```
 
-```js
-// JSON.parse x 10,407,488 ops/sec ±0.30% (97 runs sampled)
-JSON.parse('true')
-
-// destr x 88,634,032 ops/sec ±0.32% (95 runs sampled)
-destr('true')
-```
-
 **Fallback to original value if parse fails (empty or any plain string):**
 
 ```js
 // Uncaught SyntaxError: Unexpected token s in JSON at position 0
-// JSON.parse (try-catch) x 248,212 ops/sec ±1.22% (84 runs sampled
 JSON.parse('salam')
 
-// destr x 30,867,179 ops/sec ±0.49% (94 runs sampled)
+// "salam"
 destr('salam')
 ```
 
@@ -115,6 +98,54 @@ JSON.parse(input)
 
 // { user: {} }
 destr(input)
+```
+
+## Benchmarks
+
+Locally try with `pnpm benchmark`
+
+Results on Node.js 18.11.0 with MBA M2
+
+```
+=== Non-string fallback ==
+JSON.parse x 10,323,718 ops/sec ±0.45% (96 runs sampled)
+destr x 1,057,268,114 ops/sec ±1.71% (90 runs sampled)
+destr (strict) x 977,215,995 ops/sec ±1.43% (97 runs sampled)
+sjson:
+@hapi/bourne x 10,151,985 ops/sec ±0.76% (96 runs sampled)
+Fastest is destr
+
+=== Known values ==
+JSON.parse x 16,359,358 ops/sec ±0.90% (92 runs sampled)
+destr x 107,849,085 ops/sec ±0.34% (97 runs sampled)
+destr (strict) x 107,891,427 ops/sec ±0.34% (99 runs sampled)
+sjson x 14,216,957 ops/sec ±0.98% (89 runs sampled)
+@hapi/bourne x 15,209,152 ops/sec ±1.08% (88 runs sampled)
+Fastest is destr (strict),destr
+
+=== Plain string ==
+JSON.parse (try-catch) x 211,560 ops/sec ±0.84% (92 runs sampled)
+destr x 60,315,113 ops/sec ±0.46% (98 runs sampled)
+destr (strict):
+sjson (try-catch) x 186,492 ops/sec ±0.70% (97 runs sampled)
+@hapi/bourne:
+Fastest is destr
+
+=== standard object ==
+JSON.parse x 492,180 ops/sec ±0.98% (98 runs sampled)
+destr x 356,819 ops/sec ±0.40% (98 runs sampled)
+destr (strict) x 412,955 ops/sec ±0.88% (94 runs sampled)
+sjson x 437,376 ops/sec ±0.42% (102 runs sampled)
+@hapi/bourne x 457,020 ops/sec ±0.81% (99 runs sampled)
+Fastest is JSON.parse
+
+=== invalid syntax ==
+JSON.parse (try-catch) x 493,739 ops/sec ±0.51% (98 runs sampled)
+destr x 405,848 ops/sec ±0.56% (100 runs sampled)
+destr (strict) x 409,514 ops/sec ±0.57% (101 runs sampled)
+sjson (try-catch) x 435,406 ops/sec ±0.41% (100 runs sampled)
+@hapi/bourne x 467,163 ops/sec ±0.42% (99 runs sampled)
+Fastest is JSON.parse (try-catch)
 ```
 
 ## License
