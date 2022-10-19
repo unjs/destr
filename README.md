@@ -36,27 +36,8 @@ import destr from 'https://deno.land/x/destr/src/index.ts'
 console.log(destr('{ "deno": "yay" }'))
 ```
 
-### Options
-
-`destr` allows the following options as the second argument:
-
-#### `strict`
-
-Default: `false`
-
-If set to `true`, `destr` will throw an error if the input is not a valid JSON string or parsing fails.
-
-```js
-// Returns "[foo"
-destr('[foo')
-
-// Throws an error
-destr('[foo', { strict: true })
-```
 
 ## Why?
-
-Please note that `destr` is little bit slower when parsing a standard JSON string mainly because of transform to avoid [prototype pollution](https://hueniverse.com/a-tale-of-prototype-poisoning-2610fa170061) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a json string or from untrusted source like request body.
 
 **Fast fallback to input if is not string:**
 
@@ -100,11 +81,23 @@ JSON.parse(input)
 destr(input)
 ```
 
+### Strict Mode
+
+If `{ strict: true }` passed as second argument, `destr` will throw an error if the input is not a valid JSON string or parsing fails. (non string values and built-ins will be still returned as-is)
+
+```js
+// Returns "[foo"
+destr('[foo')
+
+// Throws an error
+destr('[foo', { strict: true })
+```
+
 ## Benchmarks
 
-Locally try with `pnpm benchmark`
+Locally try with `pnpm benchmark`. Below are esults on Node.js 18.11.0 with MBA M2.
 
-Results on Node.js 18.11.0 with MBA M2
+**Note** `destr` is sometimes little bit slower than `JSON.parse` when parsing a valid JSON string mainly because of transform to avoid [prototype pollution](https://hueniverse.com/a-tale-of-prototype-poisoning-2610fa170061) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a json string or from untrusted source like request body.
 
 ```
 === Non-string fallback ==
