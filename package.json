@@ -25,15 +25,14 @@
     "test": "pnpm lint"
   },
   "devDependencies": {
-    "@hapi/bourne": "latest",
-    "@nuxtjs/eslint-config-typescript": "latest",
-    "benchmark": "latest",
-    "eslint": "latest",
-    "rollup-plugin-typescript2": "latest",
-    "secure-json-parse": "latest",
-    "standard-version": "latest",
-    "typescript": "latest",
-    "unbuild": "latest"
+    "@hapi/bourne": "^3.0.0",
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
+    "benchmark": "^2.1.4",
+    "eslint": "^8.25.0",
+    "secure-json-parse": "^2.5.0",
+    "standard-version": "^9.5.0",
+    "typescript": "^4.8.4",
+    "unbuild": "^0.9.4"
   },
   "packageManager": "pnpm@6.32.3"
 }
