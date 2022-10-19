@@ -40,7 +40,19 @@ console.log(destr('{ "deno": "yay" }'))
 
 `destr` allows the following options as the second argument:
 
-- `strict` (default: `false`): If set to `true`, `destr` will throw an error if the input is not a valid JSON string.
+#### `strict`
+
+Default: `false`
+
+If set to `true`, `destr` will throw an error if the input is not a valid JSON string or parsing fails.
+
+```js
+// Returns "[foo"
+destr('[foo')
+
+// Throws an error
+destr('[foo', { strict: true })
+```
 
 ## Why?
 
