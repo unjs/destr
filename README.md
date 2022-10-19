@@ -36,6 +36,24 @@ import destr from 'https://deno.land/x/destr/src/index.ts'
 console.log(destr('{ "deno": "yay" }'))
 ```
 
+### Options
+
+`destr` allows the following options as the second argument:
+
+#### `strict`
+
+Default: `false`
+
+If set to `true`, `destr` will throw an error if the input is not a valid JSON string or parsing fails.
+
+```js
+// Returns "[foo"
+destr('[foo')
+
+// Throws an error
+destr('[foo', { strict: true })
+```
+
 ## Why?
 
 Please note that `destr` is little bit slower when parsing a standard JSON string mainly because of transform to avoid [prototype pollution](https://hueniverse.com/a-tale-of-prototype-poisoning-2610fa170061) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a json string or from untrusted source like request body.

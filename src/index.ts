@@ -12,7 +12,11 @@ function jsonParseTransform (key: string, value: any): any {
   return value
 }
 
-export default function destr (val: any): any {
+export type Options = {
+  strict?: boolean
+}
+
+export default function destr (val: any, options: Options = {}): any {
   if (typeof val !== 'string') {
     return val
   }
@@ -26,6 +30,9 @@ export default function destr (val: any): any {
   if (_lval === 'undefined') { return undefined }
 
   if (!JsonSigRx.test(val)) {
+    if (options.strict) {
+      throw new SyntaxError('Invalid JSON')
+    }
     return val
   }
 
@@ -34,7 +41,10 @@ export default function destr (val: any): any {
       return JSON.parse(val, jsonParseTransform)
     }
     return JSON.parse(val)
-  } catch (_e) {
+  } catch (error) {
+    if (options.strict) {
+      throw error
+    }
     return val
   }
 }
