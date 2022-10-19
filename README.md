@@ -97,7 +97,7 @@ destr('[foo', { strict: true })
 
 Locally try with `pnpm benchmark`. Below are esults on Node.js 18.11.0 with MBA M2.
 
-**Note** `destr` is sometimes little bit slower than `JSON.parse` when parsing a valid JSON string mainly because of transform to avoid [prototype pollution](https://hueniverse.com/a-tale-of-prototype-poisoning-2610fa170061) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a json string or from untrusted source like request body.
+**Note** `destr` is sometimes little bit slower than `JSON.parse` when parsing a valid JSON string mainly because of transform to avoid [prototype pollution](https://learn.snyk.io/lessons/prototype-pollution/javascript/) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a json string or from untrusted source like request body.
 
 ```
 === Non-string fallback ==
