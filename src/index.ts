@@ -16,7 +16,7 @@ export type Options = {
   strict?: boolean
 }
 
-export default function destr (val: any, options: Options): any {
+export default function destr (val: any, options: Options = {}): any {
   if (typeof val !== 'string') {
     return val
   }
