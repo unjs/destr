@@ -35,5 +35,5 @@
     "typescript": "^4.8.4",
     "unbuild": "^0.9.4"
   },
-  "packageManager": "pnpm@6.34.0"
+  "packageManager": "pnpm@7.13.5"
 }
