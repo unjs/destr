@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/unjs/destr/compare/v1.1.1...v1.2.0) (2022-10-19)
+
+
+### Features
+
+* add option `strict` that throws an error if the input is not valid JSON ([#11](https://github.com/unjs/destr/issues/11)) ([36c7121](https://github.com/unjs/destr/commit/36c712171dc3eac6f720a64b449d3e661d2e511b))
+
 ### [1.1.1](https://github.com/unjs/destr/compare/v1.1.0...v1.1.1) (2022-04-07)
 
 ## [1.1.0](https://github.com/unjs/destr/compare/v1.0.1...v1.1.0) (2021-01-21)
