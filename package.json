@@ -1,6 +1,6 @@
 {
   "name": "destr",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A faster, secure and convenient alternative for JSON.parse",
   "repository": "unjs/destr",
   "license": "MIT",
