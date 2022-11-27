@@ -21,19 +21,22 @@
   "scripts": {
     "bench": "pnpm build && node ./bench.cjs",
     "build": "unbuild",
+    "dev": "vitest dev",
     "lint": "eslint --ext .ts .",
     "release": "pnpm test && pnpm build && standard-version && git push --follow-tags && pnpm publish",
-    "test": "pnpm lint"
+    "test": "pnpm lint && vitest run --coverage"
   },
   "devDependencies": {
     "@hapi/bourne": "^3.0.0",
+    "@vitest/coverage-c8": "^0.25.3",
     "benchmark": "^2.1.4",
     "eslint": "^8.28.0",
     "eslint-config-unjs": "^0.0.2",
     "secure-json-parse": "^2.5.0",
     "standard-version": "^9.5.0",
     "typescript": "^4.9.3",
-    "unbuild": "^0.9.4"
+    "unbuild": "^0.9.4",
+    "vitest": "^0.25.3"
   },
   "packageManager": "pnpm@7.17.1"
 }
