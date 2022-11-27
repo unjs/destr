@@ -52,7 +52,7 @@ describe("destr", () => {
     expect(destr("UNDEFINED")).toBeUndefined();
   });
 
-  it("parses valid JSON strings", () => {
+  it("parses valid JSON texts", () => {
     const testCases = [
       { input: "{}", output: {} },
       { input: "[]", output: [] },
@@ -78,14 +78,14 @@ describe("destr", () => {
     }
   });
 
-  it("returns the passed string if it's a invalid JSON strings and `strict` option is set `false`", () => {
+  it("returns the passed string if it's a invalid JSON text and `strict` option is set `false`", () => {
     const testCases = [
       { input: "{     " },
       { input: "[     " },
       // eslint-disable-next-line quotes
       { input: '"     ' },
       { input: "[1,2,3]?" },
-      { input: "invalid JSON string" }
+      { input: "invalid JSON text" }
     ];
 
     for (const testCase of testCases) {
@@ -93,14 +93,14 @@ describe("destr", () => {
     }
   });
 
-  it("throws an error if it's a invalid JSON strings and `strict` option is set `true`", () => {
+  it("throws an error if it's a invalid JSON texts and `strict` option is set `true`", () => {
     const testCases = [
       { input: "{     ", output: "Unexpected end of JSON input" },
       { input: "[     ", output: "Unexpected end of JSON input" },
       // eslint-disable-next-line quotes
       { input: '"     ', output: "Unexpected end of JSON input" },
       { input: "[1,2,3]?", output: "Unexpected token" },
-      { input: "invalid JSON string", output: "Invalid JSON" }
+      { input: "invalid JSON text", output: "Invalid JSON" }
     ];
 
     for (const testCase of testCases) {
