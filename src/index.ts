@@ -9,14 +9,7 @@ function jsonParseTransform (key: string, value: any): any {
   if (key === "__proto__") {
     return;
   }
-  if (key === "constructor") {
-    if (typeof value !== "object") {
-      return value;
-    }
-    const hasPrototype = value && "prototype" in value;
-    if (!hasPrototype) {
-      return value;
-    }
+  if (key === "constructor" && value && typeof value === "object" && ("prototype" in value)) {
     // Has possible malicious prototype
     return;
   }
