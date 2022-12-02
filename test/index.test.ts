@@ -67,10 +67,8 @@ describe("destr", () => {
 
   it("prevents prototype pollution", () => {
     const testCases = [
-      /* eslint-disable quotes */
       { input: '{ "__proto__": {} }', output: {} },
       { input: '{ "constructor": {} }', output: {} }
-      /* eslint-enable quotes */
     ];
 
     for (const testCase of testCases) {
@@ -82,7 +80,6 @@ describe("destr", () => {
     const testCases = [
       { input: "{     " },
       { input: "[     " },
-      // eslint-disable-next-line quotes
       { input: '"     ' },
       { input: "[1,2,3]?" },
       { input: "invalid JSON text" }
@@ -97,7 +94,6 @@ describe("destr", () => {
     const testCases = [
       { input: "{     ", output: "Unexpected end of JSON input" },
       { input: "[     ", output: "Unexpected end of JSON input" },
-      // eslint-disable-next-line quotes
       { input: '"     ', output: "Unexpected end of JSON input" },
       { input: "[1,2,3]?", output: "Unexpected token" },
       { input: "invalid JSON text", output: "Invalid JSON" }
