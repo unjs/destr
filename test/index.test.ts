@@ -58,6 +58,7 @@ describe("destr", () => {
       { input: "[]", output: [] },
       { input: "{ \"key\": \"value\" }", output: { key: "value" } },
       { input: "{ \"constructor\": \"value\" }", output: { constructor: "value" } },
+      // eslint-disable-next-line unicorn/no-null
       { input: '{ "constructor": null }', output: { constructor: null } },
       { input: "[1,2,3]", output: [1, 2, 3] }
     ];
