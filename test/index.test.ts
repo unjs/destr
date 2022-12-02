@@ -58,6 +58,7 @@ describe("destr", () => {
       { input: "[]", output: [] },
       { input: "{ \"key\": \"value\" }", output: { key: "value" } },
       { input: "{ \"constructor\": \"value\" }", output: { constructor: "value" } },
+      { input: '{ "constructor": null }', output: { constructor: null } },
       { input: "[1,2,3]", output: [1, 2, 3] }
     ];
 
@@ -69,7 +70,9 @@ describe("destr", () => {
   it("prevents prototype pollution", () => {
     const testCases = [
       { input: '{ "__proto__": {} }', output: {} },
-      { input: '{ "constructor": { "prototype": {} } }', output: {} }
+      { input: '{ "constructor": { "prototype": {} } }', output: {} },
+      { input: '{ "constructor": { "prototype": null } }', output: {} }
+      // { input: '{ "constructor": { "prototype": undefined } }', output: {} }
     ];
 
     for (const testCase of testCases) {
