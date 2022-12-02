@@ -13,7 +13,7 @@ function jsonParseTransform (key: string, value: any): any {
     if (typeof value !== "object") {
       return value;
     }
-    const hasPrototype = Object.prototype.hasOwnProperty.call(value, "prototype");
+    const hasPrototype = value && "prototype" in value;
     if (!hasPrototype) {
       return value;
     }
