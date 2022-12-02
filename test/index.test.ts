@@ -72,7 +72,6 @@ describe("destr", () => {
       { input: '{ "__proto__": {} }', output: {} },
       { input: '{ "constructor": { "prototype": {} } }', output: {} },
       { input: '{ "constructor": { "prototype": null } }', output: {} }
-      // { input: '{ "constructor": { "prototype": undefined } }', output: {} }
     ];
 
     for (const testCase of testCases) {
