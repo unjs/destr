@@ -35,7 +35,7 @@
     "secure-json-parse": "^2.5.0",
     "standard-version": "^9.5.0",
     "typescript": "^4.9.3",
-    "unbuild": "^0.9.4",
+    "unbuild": "^1.0.1",
     "vitest": "^0.25.3"
   },
   "packageManager": "pnpm@7.17.1"
