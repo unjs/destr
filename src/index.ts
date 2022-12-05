@@ -3,7 +3,7 @@
 const suspectProtoRx = /"(?:_|\\u0{2}5[Ff]){2}(?:p|\\u0{2}70)(?:r|\\u0{2}72)(?:o|\\u0{2}6[Ff])(?:t|\\u0{2}74)(?:o|\\u0{2}6[Ff])(?:_|\\u0{2}5[Ff]){2}"\s*:/;
 const suspectConstructorRx = /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)"\s*:/;
 
-const JsonSigRx = /^["[{]|^-?\d[\d.]{0,14}$/;
+const JsonSigRx = /^\s*["[{]|^\s*-?\d[\d.]{0,14}\s*$/;
 
 function jsonParseTransform (key: string, value: any): any {
   if (key === "__proto__") {
@@ -25,7 +25,7 @@ export default function destr (value: any, options: Options = {}): any {
     return value;
   }
 
-  const _lval = value.toLowerCase();
+  const _lval = value.toLowerCase().trim();
   if (_lval === "true") { return true; }
   if (_lval === "false") { return false; }
   // eslint-disable-next-line unicorn/no-null

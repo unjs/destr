@@ -52,6 +52,12 @@ describe("destr", () => {
     expect(destr("UNDEFINED")).toBeUndefined();
   });
 
+  it("parses with surrounding spaces", () => {
+    expect(destr("  true ")).toBe(true);
+    expect(destr(" -123 ")).toStrictEqual(-123);
+    expect(destr(" { \"test\": 123 }  ")).toStrictEqual({ test: 123 });
+  });
+
   it("parses valid JSON texts", () => {
     const testCases = [
       { input: "{}", output: {} },
