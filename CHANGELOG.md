@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.2](https://github.com/unjs/destr/compare/v1.2.1...v1.2.2) (2022-12-05)
+
+
+### Bug Fixes
+
+* only purge `constructor.prototype` keys ([#26](https://github.com/unjs/destr/issues/26)) ([87918d5](https://github.com/unjs/destr/commit/87918d56fb35acf09ef6f33b908ad88dab288879))
+* support surrounding whitespaces (resolves [#21](https://github.com/unjs/destr/issues/21)) ([639a5df](https://github.com/unjs/destr/commit/639a5df5321d9dccc05ccc1489f75ff8c4c57981))
+
 ### [1.2.1](https://github.com/unjs/destr/compare/v1.2.0...v1.2.1) (2022-11-14)
 
 ## [1.2.0](https://github.com/unjs/destr/compare/v1.1.1...v1.2.0) (2022-10-19)
