@@ -30,7 +30,7 @@
     "@hapi/bourne": "^3.0.0",
     "@vitest/coverage-c8": "^0.26.2",
     "benchmark": "^2.1.4",
-    "eslint": "^8.30.0",
+    "eslint": "^8.31.0",
     "eslint-config-unjs": "^0.0.3",
     "secure-json-parse": "^2.6.0",
     "standard-version": "^9.5.0",
