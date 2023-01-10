@@ -6,7 +6,7 @@ specifiers:
   benchmark: ^2.1.4
   eslint: ^8.31.0
   eslint-config-unjs: ^0.0.3
-  secure-json-parse: ^2.6.0
+  secure-json-parse: ^2.7.0
   standard-version: ^9.5.0
   typescript: ^4.9.4
   unbuild: ^1.0.2
@@ -18,7 +18,7 @@ devDependencies:
   benchmark: 2.1.4
   eslint: 8.31.0
   eslint-config-unjs: 0.0.3_iukboom6ndih5an6iafl45j2fe
-  secure-json-parse: 2.6.0
+  secure-json-parse: 2.7.0
   standard-version: 9.5.0
   typescript: 4.9.4
   unbuild: 1.0.2
@@ -3359,8 +3359,8 @@ packages:
     resolution: {integrity: sha512-4AsO/FrViE/iDNEPaAQlb77tf0csuq27EsVpy6ett584EcRTp6pTDLoGWVxCD77y5iU5FauOvhsI4o1APwPoSQ==}
     dev: true
 
-  /secure-json-parse/2.6.0:
-    resolution: {integrity: sha512-B9osKohb6L+EZ6Kve3wHKfsAClzOC/iISA2vSuCe5Jx5NAKiwitfxx8ZKYapHXr0sYRj7UZInT7pLb3rp2Yx6A==}
+  /secure-json-parse/2.7.0:
+    resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
     dev: true
 
   /semver/5.7.1:
