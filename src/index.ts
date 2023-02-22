@@ -6,11 +6,11 @@ const suspectConstructorRx = /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s
 const JsonSigRx = /^\s*["[{]|^\s*-?\d[\d.]{0,14}\s*$/;
 
 function jsonParseTransform (key: string, value: any): any {
-  if (key === "__proto__") {
-    return;
-  }
-  if (key === "constructor" && value && typeof value === "object" && ("prototype" in value)) {
-    // Has possible malicious prototype
+  if (
+    key === "__proto__" ||
+    (key === "constructor" && value && typeof value === "object" && ("prototype" in value))
+  ) {
+    console.warn(`"${key}" is dropped because it might have malicious prototype`)
     return;
   }
   return value;
