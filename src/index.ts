@@ -31,7 +31,7 @@ export default function destr (value: any, options: Options = {}): any {
   // eslint-disable-next-line unicorn/no-null
   if (_lval === "null") { return null; }
   if (_lval === "nan") { return Number.NaN; }
-  if (_lval === "infinity") { return Number.POSITIVE_INFINITY; }
+  if (_lval === "infinity" || _lval === "+infinity") { return Number.POSITIVE_INFINITY; }
   if (_lval === "-infinity") { return Number.NEGATIVE_INFINITY; }
   if (_lval === "undefined") { return undefined; }
 
