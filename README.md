@@ -1,6 +1,6 @@
 # destr
 
-A faster, secure and convenient alternative for [`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse):
+A faster, secure and convenient alternative for [`JSON.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse).
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -11,7 +11,7 @@ A faster, secure and convenient alternative for [`JSON.parse`](https://developer
 
 ### Node.js
 
-Install using npm or yarn:
+Install dependency:
 
 ```bash
 # npm
@@ -27,11 +27,11 @@ pnpm i destr
 Import into your Node.js project:
 
 ```js
-// CommonJS
-const { destr, safeDestr } = require("destr");
-
 // ESM
 import { destr, safeDestr } from "destr";
+
+// CommonJS
+const { destr, safeDestr } = require("destr");
 ```
 
 ### Deno
@@ -44,7 +44,7 @@ console.log(destr('{ "deno": "yay" }'));
 
 ## Why?
 
-**Type safe:**
+### ✅Type Safe
 
 ```js
 const obj = JSON.parse("..."); // obj type is any
@@ -54,7 +54,7 @@ const obj = destr("..."); // obj type is unknown by default
 const obj = destr < MyInterface > "..."; // obj is well-typed
 ```
 
-**Fast fallback to input if is not string:**
+### ✅ Fast fallback to input if is not string
 
 ```js
 // Uncaught SyntaxError: Unexpected token u in JSON at position 0
@@ -64,7 +64,7 @@ JSON.parse();
 destr();
 ```
 
-**Fast lookup for known string values:**
+### ✅ Fast lookup for known string values
 
 ```js
 // Uncaught SyntaxError: Unexpected token T in JSON at position 0
@@ -74,7 +74,7 @@ JSON.parse("TRUE");
 destr("TRUE");
 ```
 
-**Fallback to original value if parse fails (empty or any plain string):**
+### ✅ Fallback to original value if parse fails (empty or any plain string)
 
 ```js
 // Uncaught SyntaxError: Unexpected token s in JSON at position 0
@@ -84,7 +84,7 @@ JSON.parse("salam");
 destr("salam");
 ```
 
-**Avoid prototype pollution:**
+### ✅ Avoid prototype pollution
 
 ```js
 const input = '{ "user": { "__proto__": { "isAdmin": true } } }';
@@ -96,7 +96,7 @@ JSON.parse(input);
 destr(input);
 ```
 
-### Strict Mode
+### ✅ Strict Mode
 
 When using `safeDestr` it will throw an error if the input is not a valid JSON string or parsing fails. (non string values and built-ins will be still returned as-is)
 
