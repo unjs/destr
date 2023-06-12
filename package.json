@@ -20,7 +20,7 @@
     "lib"
   ],
   "scripts": {
-    "bench": "pnpm build && node ./bench.cjs",
+    "bench": "pnpm build && node ./bench.mjs",
     "build": "unbuild",
     "dev": "vitest dev",
     "lint": "eslint --ext .ts . && prettier -c src test",
