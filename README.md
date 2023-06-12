@@ -110,49 +110,49 @@ safeDestr("[foo", { strict: true });
 
 ## Benchmarks
 
-Locally try with `pnpm benchmark`. Below are esults on Node.js 18.11.0 with MBA M2.
+Locally try with `pnpm benchmark`. Below are esults on Node.js **v18.16.0** with MBA M2.
 
 **Note** `destr` is sometimes little bit slower than `JSON.parse` when parsing a valid JSON string mainly because of transform to avoid [prototype pollution](https://learn.snyk.io/lessons/prototype-pollution/javascript/) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a json string or from untrusted source like request body.
 
 ```
 === Non-string fallback ==
-JSON.parse x 10,323,718 ops/sec ±0.45% (96 runs sampled)
-destr x 1,057,268,114 ops/sec ±1.71% (90 runs sampled)
-destr (strict) x 977,215,995 ops/sec ±1.43% (97 runs sampled)
+JSON.parse x 9,498,532 ops/sec ±0.57% (96 runs sampled)
+destr x 153,323,211 ops/sec ±0.13% (99 runs sampled)
+safeDestr x 64,237,062 ops/sec ±0.22% (96 runs sampled)
 sjson:
-@hapi/bourne x 10,151,985 ops/sec ±0.76% (96 runs sampled)
+@hapi/bourne x 9,190,459 ops/sec ±0.50% (93 runs sampled)
 Fastest is destr
 
 === Known values ==
-JSON.parse x 16,359,358 ops/sec ±0.90% (92 runs sampled)
-destr x 107,849,085 ops/sec ±0.34% (97 runs sampled)
-destr (strict) x 107,891,427 ops/sec ±0.34% (99 runs sampled)
-sjson x 14,216,957 ops/sec ±0.98% (89 runs sampled)
-@hapi/bourne x 15,209,152 ops/sec ±1.08% (88 runs sampled)
-Fastest is destr (strict),destr
-
-=== Plain string ==
-JSON.parse (try-catch) x 211,560 ops/sec ±0.84% (92 runs sampled)
-destr x 60,315,113 ops/sec ±0.46% (98 runs sampled)
-destr (strict):
-sjson (try-catch) x 186,492 ops/sec ±0.70% (97 runs sampled)
-@hapi/bourne:
+JSON.parse x 14,260,909 ops/sec ±0.54% (95 runs sampled)
+destr x 72,916,945 ops/sec ±0.15% (98 runs sampled)
+safeDestr x 36,544,906 ops/sec ±0.31% (98 runs sampled)
+sjson x 11,157,730 ops/sec ±0.53% (96 runs sampled)
+@hapi/bourne x 13,241,853 ops/sec ±0.73% (93 runs sampled)
 Fastest is destr
 
-=== standard object ==
-JSON.parse x 492,180 ops/sec ±0.98% (98 runs sampled)
-destr x 356,819 ops/sec ±0.40% (98 runs sampled)
-destr (strict) x 412,955 ops/sec ±0.88% (94 runs sampled)
-sjson x 437,376 ops/sec ±0.42% (102 runs sampled)
-@hapi/bourne x 457,020 ops/sec ±0.81% (99 runs sampled)
+=== plain string ==
+JSON.parse (try-catch) x 10,603,912 ops/sec ±0.75% (91 runs sampled)
+destr x 82,123,481 ops/sec ±2.37% (99 runs sampled)
+safeDestr x 40,737,935 ops/sec ±0.97% (96 runs sampled)
+sjson (try-catch) x 9,194,305 ops/sec ±1.96% (94 runs sampled)
+@hapi/bourne x 10,816,232 ops/sec ±1.59% (90 runs sampled)
+Fastest is destr
+
+=== package.json ==
+JSON.parse x 403,428 ops/sec ±0.31% (101 runs sampled)
+destr x 338,668 ops/sec ±0.27% (97 runs sampled)
+safeDestr x 335,756 ops/sec ±0.29% (98 runs sampled)
+sjson x 355,493 ops/sec ±0.15% (101 runs sampled)
+@hapi/bourne x 384,948 ops/sec ±0.24% (98 runs sampled)
 Fastest is JSON.parse
 
-=== invalid syntax ==
-JSON.parse (try-catch) x 493,739 ops/sec ±0.51% (98 runs sampled)
-destr x 405,848 ops/sec ±0.56% (100 runs sampled)
-destr (strict) x 409,514 ops/sec ±0.57% (101 runs sampled)
-sjson (try-catch) x 435,406 ops/sec ±0.41% (100 runs sampled)
-@hapi/bourne x 467,163 ops/sec ±0.42% (99 runs sampled)
+=== broken object ==
+JSON.parse (try-catch) x 406,262 ops/sec ±0.18% (100 runs sampled)
+destr x 337,602 ops/sec ±0.37% (99 runs sampled)
+safeDestr x 320,071 ops/sec ±0.35% (97 runs sampled)
+sjson (try-catch) x 326,689 ops/sec ±0.41% (97 runs sampled)
+@hapi/bourne x 313,024 ops/sec ±0.91% (94 runs sampled)
 Fastest is JSON.parse (try-catch)
 ```
 

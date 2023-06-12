@@ -2,7 +2,7 @@ import fs from "node:fs";
 import Benchmark from "benchmark";
 import sjson from "secure-json-parse";
 import bourne from "@hapi/bourne";
-import { destr } from "destr";
+import { destr, safeDestr } from "destr";
 
 const { log } = console;
 
@@ -28,8 +28,8 @@ function bench(name, val) {
   suite.add("destr", () => {
     destr(val);
   });
-  suite.add("destr (strict)", () => {
-    destr(val, { strict: true });
+  suite.add("safeDestr", () => {
+    safeDestr(val);
   });
   suite.add("sjson", () => {
     sjson.parse(val);
@@ -52,8 +52,8 @@ function benchTryCatch(name, val) {
   suite.add("destr", () => {
     destr(val);
   });
-  suite.add("destr (strict)", () => {
-    destr(val, { strict: true });
+  suite.add("safeDestr", () => {
+    safeDestr(val);
   });
   suite.add("sjson (try-catch)", () => {
     try {
@@ -70,8 +70,8 @@ function benchTryCatch(name, val) {
 
 bench("Non-string fallback", 3.14159265359);
 bench("Known values", "true");
-benchTryCatch("Plain string", `"SALAM"`);
+benchTryCatch("plain string", `"SALAM"`);
 
 const pkg = fs.readFileSync("./package.json", "utf-8");
-bench("standard object", pkg);
-benchTryCatch("invalid syntax", pkg.substring(0, pkg.length - 1));
+bench("package.json", pkg);
+benchTryCatch("broken object", pkg.substring(0, pkg.length - 1));

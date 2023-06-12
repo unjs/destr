@@ -121,6 +121,18 @@ describe("destr", () => {
     }
   });
 
+  it("parses valid string as is with fast path", () => {
+    const testCases = [
+      { input: '"Hello"', output: "Hello" },
+      { input: ' "Hello" ', output: "Hello" },
+      { input: ' "Invalid', output: ' "Invalid' },
+    ];
+
+    for (const testCase of testCases) {
+      expect(destr(testCase.input)).toStrictEqual(testCase.output);
+    }
+  });
+
   it("throws an error if it's a invalid JSON texts with safeDestr", () => {
     const testCases = [
       { input: "{     ", output: "Unexpected end of JSON input" },
@@ -128,6 +140,7 @@ describe("destr", () => {
       { input: '"     ', output: "Unexpected end of JSON input" },
       { input: "[1,2,3]?", output: "Unexpected token" },
       { input: "invalid JSON text", output: "Invalid JSON" },
+      { input: ' "Invalid', output: "Unexpected end of JSON input" },
     ];
 
     for (const testCase of testCases) {
