@@ -54,6 +54,9 @@ export default function destr<T = unknown>(
   if (_lval === "infinity") {
     return Number.POSITIVE_INFINITY as T;
   }
+  if (_lval === "-infinity") {
+    return Number.NEGATIVE_INFINITY as T;
+  }
   if (_lval === "undefined") {
     return undefined as T;
   }
