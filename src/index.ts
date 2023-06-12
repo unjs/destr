@@ -34,7 +34,7 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
     return value;
   }
 
-  let _value = value.trim();
+  const _value = value.trim();
   // eslint-disable-next-line unicorn/prefer-at
   if (value[0] === '"' && value[value.length - 1] === '"') {
     return _value.slice(1, -1) as T;
