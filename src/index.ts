@@ -29,10 +29,7 @@ export type Options = {
   strict?: boolean;
 };
 
-export default function destr<T = unknown>(
-  value: any,
-  options: Options = {}
-): T {
+export function destr<T = unknown>(value: any, options: Options = {}): T {
   if (typeof value !== "string") {
     return value;
   }
@@ -80,3 +77,5 @@ export default function destr<T = unknown>(
     return value as T;
   }
 }
+
+export default destr;

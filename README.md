@@ -14,25 +14,30 @@ A faster, secure and convenient alternative for [`JSON.parse`](https://developer
 Install using npm or yarn:
 
 ```bash
+# npm
 npm i destr
-# or
+
+# yarn
 yarn add destr
+
+# pnpm
+pnpm i destr
 ```
 
 Import into your Node.js project:
 
 ```js
 // CommonJS
-const destr = require("destr");
+const { destr } = require("destr");
 
 // ESM
-import destr from "destr";
+import { destr } from "destr";
 ```
 
 ### Deno
 
 ```js
-import destr from "https://deno.land/x/destr/src/index.ts";
+import { destr } from "https://deno.land/x/destr/src/index.ts";
 
 console.log(destr('{ "deno": "yay" }'));
 ```
