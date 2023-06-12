@@ -44,17 +44,19 @@ console.log(destr('{ "deno": "yay" }'));
 
 ## Why?
 
-### ✅Type Safe
+### ✅ Type Safe
 
-```js
-const obj = JSON.parse("..."); // obj type is any
+```ts
+const obj = JSON.parse("{}"); // obj type is any
 
-const obj = destr("..."); // obj type is unknown by default
+const obj = destr("{}"); // obj type is unknown by default
 
-const obj = destr < MyInterface > "..."; // obj is well-typed
+const obj = destr<MyInterface>("{}"); // obj is well-typed
 ```
 
 ### ✅ Fast fallback to input if is not string
+
+> 🚀 Up to 500 faster than `JSON.parse`!
 
 ```js
 // Uncaught SyntaxError: Unexpected token u in JSON at position 0
@@ -66,6 +68,8 @@ destr();
 
 ### ✅ Fast lookup for known string values
 
+> 🚀 Up to 900 times faster than `JSON.parse`!
+
 ```js
 // Uncaught SyntaxError: Unexpected token T in JSON at position 0
 JSON.parse("TRUE");
@@ -76,6 +80,8 @@ destr("TRUE");
 
 ### ✅ Fallback to original value if parse fails (empty or any plain string)
 
+> 🚀 Up to 900 times faster than `JSON.parse`!
+
 ```js
 // Uncaught SyntaxError: Unexpected token s in JSON at position 0
 JSON.parse("salam");
@@ -83,6 +89,8 @@ JSON.parse("salam");
 // "salam"
 destr("salam");
 ```
+
+**Note:** This fails in safe/strict mode with `safeDestr`.
 
 ### ✅ Avoid prototype pollution
 
