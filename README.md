@@ -28,16 +28,16 @@ Import into your Node.js project:
 
 ```js
 // CommonJS
-const { destr } = require("destr");
+const { destr, destrSafe } = require("destr");
 
 // ESM
-import { destr } from "destr";
+import { destr, destrSafe } from "destr";
 ```
 
 ### Deno
 
 ```js
-import { destr } from "https://deno.land/x/destr/src/index.ts";
+import { destr, destrSafe } from "https://deno.land/x/destr/src/index.ts";
 
 console.log(destr('{ "deno": "yay" }'));
 ```
@@ -98,14 +98,14 @@ destr(input);
 
 ### Strict Mode
 
-If `{ strict: true }` passed as second argument, `destr` will throw an error if the input is not a valid JSON string or parsing fails. (non string values and built-ins will be still returned as-is)
+When using `destrSafe` it will throw an error if the input is not a valid JSON string or parsing fails. (non string values and built-ins will be still returned as-is)
 
 ```js
 // Returns "[foo"
-destr("[foo");
+destrSafe("[foo");
 
 // Throws an error
-destr("[foo", { strict: true });
+destrSafe("[foo", { strict: true });
 ```
 
 ## Benchmarks
