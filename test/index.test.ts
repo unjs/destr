@@ -1,5 +1,5 @@
 import { expect, it, describe, vi } from "vitest";
-import destr from "../src";
+import { destr } from "../src";
 
 describe("destr", () => {
   it("returns the passed value if it's not a string", () => {

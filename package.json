@@ -9,14 +9,15 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
+      "require": "./lib/index.cjs"
     }
   },
-  "main": "./dist/index.cjs",
+  "main": "./lib/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "lib"
   ],
   "scripts": {
     "bench": "pnpm build && node ./bench.cjs",
