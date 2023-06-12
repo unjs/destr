@@ -44,6 +44,9 @@ export default function destr<T = unknown>(
   if (_lval === "false") {
     return false as T;
   }
+  if (_lval === "undefined") {
+    return undefined as T;
+  }
   if (_lval === "null") {
     // eslint-disable-next-line unicorn/no-null
     return null as T;
@@ -56,9 +59,6 @@ export default function destr<T = unknown>(
   }
   if (_lval === "-infinity") {
     return Number.NEGATIVE_INFINITY as T;
-  }
-  if (_lval === "undefined") {
-    return undefined as T;
   }
 
   if (!JsonSigRx.test(value)) {
