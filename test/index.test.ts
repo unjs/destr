@@ -12,7 +12,7 @@ describe("destr", () => {
       /* eslint-disable-next-line unicorn/no-null */
       { input: null },
       { input: Number.POSITIVE_INFINITY },
-      { input: undefined }
+      { input: undefined },
     ];
 
     for (const testCase of testCases) {
@@ -55,18 +55,18 @@ describe("destr", () => {
   it("parses with surrounding spaces", () => {
     expect(destr("  true ")).toBe(true);
     expect(destr(" -123 ")).toStrictEqual(-123);
-    expect(destr(" { \"test\": 123 }  ")).toStrictEqual({ test: 123 });
+    expect(destr(' { "test": 123 }  ')).toStrictEqual({ test: 123 });
   });
 
   it("parses valid JSON texts", () => {
     const testCases = [
       { input: "{}", output: {} },
       { input: "[]", output: [] },
-      { input: "{ \"key\": \"value\" }", output: { key: "value" } },
-      { input: "{ \"constructor\": \"value\" }", output: { constructor: "value" } },
+      { input: '{ "key": "value" }', output: { key: "value" } },
+      { input: '{ "constructor": "value" }', output: { constructor: "value" } },
       // eslint-disable-next-line unicorn/no-null
       { input: '{ "constructor": null }', output: { constructor: null } },
-      { input: "[1,2,3]", output: [1, 2, 3] }
+      { input: "[1,2,3]", output: [1, 2, 3] },
     ];
 
     for (const testCase of testCases) {
@@ -75,17 +75,35 @@ describe("destr", () => {
   });
 
   it("prevents prototype pollution", () => {
-    const spy = vi.spyOn(console, 'warn').mockImplementation((message: string) => console.log(message))
+    const spy = vi
+      .spyOn(console, "warn")
+      .mockImplementation((message: string) => console.log(message));
+
+    // eslint-disable-next-line unicorn/consistent-function-scoping
+    const warnMessage = (key: string) =>
+      `[destr] Dropping "${key}" key to prevent prototype pollution.`;
 
     const testCases = [
-      { input: '{ "__proto__": {} }', output: {}, warning: `"__proto__" is dropped because it might have malicious prototype` },
-      { input: '{ "constructor": { "prototype": {} } }', output: {}, warning: `"constructor" is dropped because it might have malicious prototype` },
-      { input: '{ "constructor": { "prototype": null } }', output: {}, warning: `"constructor" is dropped because it might have malicious prototype` }
+      {
+        input: '{ "__proto__": {} }',
+        output: {},
+        warning: warnMessage("__proto__"),
+      },
+      {
+        input: '{ "constructor": { "prototype": {} } }',
+        output: {},
+        warning: warnMessage("constructor"),
+      },
+      {
+        input: '{ "constructor": { "prototype": null } }',
+        output: {},
+        warning: warnMessage("constructor"),
+      },
     ];
 
     for (const testCase of testCases) {
       expect(destr(testCase.input)).toStrictEqual(testCase.output);
-      expect(spy).toHaveBeenCalledWith(testCase.warning)
+      expect(spy).toHaveBeenCalledWith(testCase.warning);
     }
   });
 
@@ -95,7 +113,7 @@ describe("destr", () => {
       { input: "[     " },
       { input: '"     ' },
       { input: "[1,2,3]?" },
-      { input: "invalid JSON text" }
+      { input: "invalid JSON text" },
     ];
 
     for (const testCase of testCases) {
@@ -109,11 +127,13 @@ describe("destr", () => {
       { input: "[     ", output: "Unexpected end of JSON input" },
       { input: '"     ', output: "Unexpected end of JSON input" },
       { input: "[1,2,3]?", output: "Unexpected token" },
-      { input: "invalid JSON text", output: "Invalid JSON" }
+      { input: "invalid JSON text", output: "Invalid JSON" },
     ];
 
     for (const testCase of testCases) {
-      expect(() => destr(testCase.input, { strict: true })).toThrowError(testCase.output || "");
+      expect(() => destr(testCase.input, { strict: true })).toThrowError(
+        testCase.output || ""
+      );
     }
   });
 });
