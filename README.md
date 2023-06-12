@@ -23,63 +23,72 @@ Import into your Node.js project:
 
 ```js
 // CommonJS
-const destr = require('destr')
+const destr = require("destr");
 
 // ESM
-import destr from 'destr'
+import destr from "destr";
 ```
 
 ### Deno
 
 ```js
-import destr from 'https://deno.land/x/destr/src/index.ts'
+import destr from "https://deno.land/x/destr/src/index.ts";
 
-console.log(destr('{ "deno": "yay" }'))
+console.log(destr('{ "deno": "yay" }'));
 ```
 
-
 ## Why?
+
+**Type safe:**
+
+```js
+const obj = JSON.parse("..."); // obj type is any
+
+const obj = destr("..."); // obj type is unknown by default
+
+const obj = destr < MyInterface > "..."; // obj is well-typed
+```
 
 **Fast fallback to input if is not string:**
 
 ```js
 // Uncaught SyntaxError: Unexpected token u in JSON at position 0
-JSON.parse()
+JSON.parse();
 
 // undefined
-destr()
+destr();
 ```
 
 **Fast lookup for known string values:**
 
 ```js
 // Uncaught SyntaxError: Unexpected token T in JSON at position 0
-JSON.parse('TRUE')
+JSON.parse("TRUE");
 
 // true
-destr('TRUE')
+destr("TRUE");
 ```
 
 **Fallback to original value if parse fails (empty or any plain string):**
 
 ```js
 // Uncaught SyntaxError: Unexpected token s in JSON at position 0
-JSON.parse('salam')
+JSON.parse("salam");
 
 // "salam"
-destr('salam')
+destr("salam");
 ```
 
 **Avoid prototype pollution:**
 
 ```js
-const input = '{ "user": { "__proto__": { "isAdmin": true } } }'
+const input = '{ "user": { "__proto__": { "isAdmin": true } } }';
 
 // { user: { __proto__: { isAdmin: true } } }
-JSON.parse(input)
+JSON.parse(input);
 
 // { user: {} }
-destr(input)
+destr(input);
 ```
 
 ### Strict Mode
@@ -88,10 +97,10 @@ If `{ strict: true }` passed as second argument, `destr` will throw an error if 
 
 ```js
 // Returns "[foo"
-destr('[foo')
+destr("[foo");
 
 // Throws an error
-destr('[foo', { strict: true })
+destr("[foo", { strict: true });
 ```
 
 ## Benchmarks
@@ -147,6 +156,7 @@ Fastest is JSON.parse (try-catch)
 MIT. Made with 💖
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/destr?style=flat&colorA=18181B&colorB=F0DB4F
 [npm-version-href]: https://npmjs.com/package/destr
 [npm-downloads-src]: https://img.shields.io/npm/dm/destr?style=flat&colorA=18181B&colorB=F0DB4F
