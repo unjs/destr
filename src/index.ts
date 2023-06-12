@@ -39,8 +39,8 @@ export default function destr(value: any, options: Options = {}): any {
   if (_lval === "false") {
     return false;
   }
-  // eslint-disable-next-line unicorn/no-null
   if (_lval === "null") {
+    // eslint-disable-next-line unicorn/no-null
     return null;
   }
   if (_lval === "nan") {
