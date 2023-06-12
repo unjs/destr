@@ -1,4 +1,4 @@
-import { expect, it, describe } from "vitest";
+import { expect, it, describe, vi } from "vitest";
 import destr from "../src";
 
 describe("destr", () => {
@@ -75,14 +75,35 @@ describe("destr", () => {
   });
 
   it("prevents prototype pollution", () => {
+    const spy = vi
+      .spyOn(console, "warn")
+      .mockImplementation((message: string) => console.log(message));
+
+    // eslint-disable-next-line unicorn/consistent-function-scoping
+    const warnMessage = (key: string) =>
+      `[destr] Dropping "${key}" key to prevent prototype pollution.`;
+
     const testCases = [
-      { input: '{ "__proto__": {} }', output: {} },
-      { input: '{ "constructor": { "prototype": {} } }', output: {} },
-      { input: '{ "constructor": { "prototype": null } }', output: {} },
+      {
+        input: '{ "__proto__": {} }',
+        output: {},
+        warning: warnMessage("__proto__"),
+      },
+      {
+        input: '{ "constructor": { "prototype": {} } }',
+        output: {},
+        warning: warnMessage("constructor"),
+      },
+      {
+        input: '{ "constructor": { "prototype": null } }',
+        output: {},
+        warning: warnMessage("constructor"),
+      },
     ];
 
     for (const testCase of testCases) {
       expect(destr(testCase.input)).toStrictEqual(testCase.output);
+      expect(spy).toHaveBeenCalledWith(testCase.warning);
     }
   });
 

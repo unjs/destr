@@ -8,19 +8,21 @@ const suspectConstructorRx =
 const JsonSigRx = /^\s*["[{]|^\s*-?\d[\d.]{0,14}\s*$/;
 
 function jsonParseTransform(key: string, value: any): any {
-  if (key === "__proto__") {
-    return;
-  }
   if (
-    key === "constructor" &&
-    value &&
-    typeof value === "object" &&
-    "prototype" in value
+    key === "__proto__" ||
+    (key === "constructor" &&
+      value &&
+      typeof value === "object" &&
+      "prototype" in value)
   ) {
-    // Has possible malicious prototype
+    warnKeyDropped(key);
     return;
   }
   return value;
+}
+
+function warnKeyDropped(key: string): void {
+  console.warn(`[destr] Dropping "${key}" key to prevent prototype pollution.`);
 }
 
 export type Options = {
