@@ -27,37 +27,40 @@ export type Options = {
   strict?: boolean;
 };
 
-export default function destr(value: any, options: Options = {}): any {
+export default function destr<T = unknown>(
+  value: any,
+  options: Options = {}
+): T {
   if (typeof value !== "string") {
     return value;
   }
 
   const _lval = value.toLowerCase().trim();
   if (_lval === "true") {
-    return true;
+    return true as T;
   }
   if (_lval === "false") {
-    return false;
+    return false as T;
   }
   if (_lval === "null") {
     // eslint-disable-next-line unicorn/no-null
-    return null;
+    return null as T;
   }
   if (_lval === "nan") {
-    return Number.NaN;
+    return Number.NaN as T;
   }
   if (_lval === "infinity") {
-    return Number.POSITIVE_INFINITY;
+    return Number.POSITIVE_INFINITY as T;
   }
   if (_lval === "undefined") {
-    return undefined;
+    return undefined as T;
   }
 
   if (!JsonSigRx.test(value)) {
     if (options.strict) {
       throw new SyntaxError("Invalid JSON");
     }
-    return value;
+    return value as T;
   }
 
   try {
@@ -69,6 +72,6 @@ export default function destr(value: any, options: Options = {}): any {
     if (options.strict) {
       throw error;
     }
-    return value;
+    return value as T;
   }
 }
