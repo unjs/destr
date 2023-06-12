@@ -6,6 +6,7 @@ specifiers:
   benchmark: ^2.1.4
   eslint: ^8.42.0
   eslint-config-unjs: ^0.2.1
+  prettier: ^2.8.8
   secure-json-parse: ^2.7.0
   standard-version: ^9.5.0
   typescript: ^5.1.3
@@ -18,6 +19,7 @@ devDependencies:
   benchmark: 2.1.4
   eslint: 8.42.0
   eslint-config-unjs: 0.2.1_tizxnkcvjrb4cldxgwq5h3lj5u
+  prettier: 2.8.8
   secure-json-parse: 2.7.0
   standard-version: 9.5.0
   typescript: 5.1.3
@@ -3513,6 +3515,12 @@ packages:
   /prelude-ls/1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
+    dev: true
+
+  /prettier/2.8.8:
+    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
     dev: true
 
   /pretty-bytes/6.1.0:

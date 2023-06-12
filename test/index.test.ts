@@ -12,7 +12,7 @@ describe("destr", () => {
       /* eslint-disable-next-line unicorn/no-null */
       { input: null },
       { input: Number.POSITIVE_INFINITY },
-      { input: undefined }
+      { input: undefined },
     ];
 
     for (const testCase of testCases) {
@@ -55,18 +55,18 @@ describe("destr", () => {
   it("parses with surrounding spaces", () => {
     expect(destr("  true ")).toBe(true);
     expect(destr(" -123 ")).toStrictEqual(-123);
-    expect(destr(" { \"test\": 123 }  ")).toStrictEqual({ test: 123 });
+    expect(destr(' { "test": 123 }  ')).toStrictEqual({ test: 123 });
   });
 
   it("parses valid JSON texts", () => {
     const testCases = [
       { input: "{}", output: {} },
       { input: "[]", output: [] },
-      { input: "{ \"key\": \"value\" }", output: { key: "value" } },
-      { input: "{ \"constructor\": \"value\" }", output: { constructor: "value" } },
+      { input: '{ "key": "value" }', output: { key: "value" } },
+      { input: '{ "constructor": "value" }', output: { constructor: "value" } },
       // eslint-disable-next-line unicorn/no-null
       { input: '{ "constructor": null }', output: { constructor: null } },
-      { input: "[1,2,3]", output: [1, 2, 3] }
+      { input: "[1,2,3]", output: [1, 2, 3] },
     ];
 
     for (const testCase of testCases) {
@@ -78,7 +78,7 @@ describe("destr", () => {
     const testCases = [
       { input: '{ "__proto__": {} }', output: {} },
       { input: '{ "constructor": { "prototype": {} } }', output: {} },
-      { input: '{ "constructor": { "prototype": null } }', output: {} }
+      { input: '{ "constructor": { "prototype": null } }', output: {} },
     ];
 
     for (const testCase of testCases) {
@@ -92,7 +92,7 @@ describe("destr", () => {
       { input: "[     " },
       { input: '"     ' },
       { input: "[1,2,3]?" },
-      { input: "invalid JSON text" }
+      { input: "invalid JSON text" },
     ];
 
     for (const testCase of testCases) {
@@ -106,11 +106,13 @@ describe("destr", () => {
       { input: "[     ", output: "Unexpected end of JSON input" },
       { input: '"     ', output: "Unexpected end of JSON input" },
       { input: "[1,2,3]?", output: "Unexpected token" },
-      { input: "invalid JSON text", output: "Invalid JSON" }
+      { input: "invalid JSON text", output: "Invalid JSON" },
     ];
 
     for (const testCase of testCases) {
-      expect(() => destr(testCase.input, { strict: true })).toThrowError(testCase.output || "");
+      expect(() => destr(testCase.input, { strict: true })).toThrowError(
+        testCase.output || ""
+      );
     }
   });
 });
