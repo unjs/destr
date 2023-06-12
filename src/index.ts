@@ -60,13 +60,16 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
 
   if (!JsonSigRx.test(value)) {
     if (options.strict) {
-      throw new SyntaxError("Invalid JSON");
+      throw new SyntaxError("[destr] Invalid JSON");
     }
     return value as T;
   }
 
   try {
     if (suspectProtoRx.test(value) || suspectConstructorRx.test(value)) {
+      if (options.strict) {
+        throw new Error("[destr] Possible prototype pollution");
+      }
       return JSON.parse(value, jsonParseTransform);
     }
     return JSON.parse(value);
@@ -76,6 +79,10 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
     }
     return value as T;
   }
+}
+
+export function safeDestr<T = unknown>(value: any, options: Options = {}): T {
+  return destr<T>(value, { ...options, strict: true });
 }
 
 export default destr;

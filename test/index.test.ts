@@ -1,5 +1,5 @@
 import { expect, it, describe, vi } from "vitest";
-import { destr } from "../src";
+import { destr, safeDestr } from "../src";
 
 describe("destr", () => {
   it("returns the passed value if it's not a string", () => {
@@ -107,7 +107,7 @@ describe("destr", () => {
     }
   });
 
-  it("returns the passed string if it's a invalid JSON text and `strict` option is set `false`", () => {
+  it("returns the passed string if it's a invalid JSON text by default", () => {
     const testCases = [
       { input: "{     " },
       { input: "[     " },
@@ -121,7 +121,7 @@ describe("destr", () => {
     }
   });
 
-  it("throws an error if it's a invalid JSON texts and `strict` option is set `true`", () => {
+  it("throws an error if it's a invalid JSON texts with safeDestr", () => {
     const testCases = [
       { input: "{     ", output: "Unexpected end of JSON input" },
       { input: "[     ", output: "Unexpected end of JSON input" },
@@ -131,7 +131,7 @@ describe("destr", () => {
     ];
 
     for (const testCase of testCases) {
-      expect(() => destr(testCase.input, { strict: true })).toThrowError(
+      expect(() => safeDestr(testCase.input)).toThrowError(
         testCase.output || ""
       );
     }
