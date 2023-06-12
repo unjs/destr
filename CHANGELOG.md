@@ -2,6 +2,53 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.0.0
+
+[compare changes](https://github.com/unjs/destr/compare/v1.2.2...v2.0.0)
+
+
+### 🚀 Enhancements
+
+  - ⚠️  Support generic type with `unkown` default ([#68](https://github.com/unjs/destr/pull/68))
+  - Show warning when dropping unsafe keys ([#57](https://github.com/unjs/destr/pull/57))
+  - Support minus infinity ([#67](https://github.com/unjs/destr/pull/67))
+  - Support `safeDestr` ([#70](https://github.com/unjs/destr/pull/70))
+  - Parse double-quoted string with fast path ([#71](https://github.com/unjs/destr/pull/71))
+
+### 🔥 Performance
+
+  - Move common check earlier ([5be5732](https://github.com/unjs/destr/commit/5be5732))
+
+### 💅 Refactors
+
+  - ⚠️  Use named `destr` export ([#69](https://github.com/unjs/destr/pull/69))
+
+### 🏡 Chore
+
+  - **readme:** Badges update ([6544804](https://github.com/unjs/destr/commit/6544804))
+  - Update dev dependencies ([4aa3592](https://github.com/unjs/destr/commit/4aa3592))
+  - Lint with prettier ([6aa42c6](https://github.com/unjs/destr/commit/6aa42c6))
+  - Fix lint issue ([cb4c0d6](https://github.com/unjs/destr/commit/cb4c0d6))
+  - Update coverage package ([a73b0ff](https://github.com/unjs/destr/commit/a73b0ff))
+  - Use `changelogen` for release ([75989d3](https://github.com/unjs/destr/commit/75989d3))
+  - Run ci with node 18 ([80554b8](https://github.com/unjs/destr/commit/80554b8))
+  - Update benchmark script ([4138ebf](https://github.com/unjs/destr/commit/4138ebf))
+  - Add `codecov.yml` ([fa4d366](https://github.com/unjs/destr/commit/fa4d366))
+  - Update readme ([ecf2029](https://github.com/unjs/destr/commit/ecf2029))
+  - Update readme ([60b3f81](https://github.com/unjs/destr/commit/60b3f81))
+
+#### ⚠️  Breaking Changes
+
+  - ⚠️  Support generic type with `unkown` default ([#68](https://github.com/unjs/destr/pull/68))
+  - ⚠️  Use named `destr` export ([#69](https://github.com/unjs/destr/pull/69))
+
+### ❤️  Contributors
+
+- Pooya Parsa ([@pi0](http://github.com/pi0))
+- Zuixinwang 
+- Nozomu Ikuta 
+- Sébastien Chopin <seb@nuxtlabs.com>
+
 ### [1.2.2](https://github.com/unjs/destr/compare/v1.2.1...v1.2.2) (2022-12-05)
 
 
