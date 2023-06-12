@@ -81,7 +81,7 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   }
 }
 
-export function destrSafe<T = unknown>(value: any, options: Options = {}): T {
+export function safeDestr<T = unknown>(value: any, options: Options = {}): T {
   return destr<T>(value, { ...options, strict: true });
 }
 
