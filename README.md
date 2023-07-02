@@ -110,10 +110,10 @@ When using `safeDestr` it will throw an error if the input is not a valid JSON s
 
 ```js
 // Returns "[foo"
-safeDestr("[foo");
+destr("[foo");
 
 // Throws an error
-safeDestr("[foo", { strict: true });
+safeDestr("[foo");
 ```
 
 ## Benchmarks
