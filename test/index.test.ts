@@ -12,6 +12,7 @@ describe("destr", () => {
       /* eslint-disable-next-line unicorn/no-null */
       { input: null },
       { input: Number.POSITIVE_INFINITY },
+      { input: Number.NEGATIVE_INFINITY },
       { input: undefined },
     ];
 
@@ -47,6 +48,11 @@ describe("destr", () => {
     expect(destr("Infinity")).toStrictEqual(Number.POSITIVE_INFINITY);
   });
 
+  it("parses string '-infinity' as `Number.NEGATIVE_INFINITY` case-insensitively", () => {
+    expect(destr("-infinity")).toStrictEqual(Number.NEGATIVE_INFINITY);
+    expect(destr("-Infinity")).toStrictEqual(Number.NEGATIVE_INFINITY);
+  });
+
   it("parses string 'undefined' as `undefined` case-insensitively", () => {
     expect(destr("undefined")).toBeUndefined();
     expect(destr("UNDEFINED")).toBeUndefined();
@@ -59,7 +65,7 @@ describe("destr", () => {
   });
 
   it("parses valid JSON texts", () => {
-    const testCases = [
+    const testCases: Array<{ input: string; output: unknown }> = [
       { input: "{}", output: {} },
       { input: "[]", output: [] },
       { input: '{ "key": "value" }', output: { key: "value" } },
@@ -146,6 +152,29 @@ describe("destr", () => {
     for (const testCase of testCases) {
       expect(() => safeDestr(testCase.input)).toThrowError(
         testCase.output || ""
+      );
+    }
+  });
+
+  it("throws an error on possible prototype pollution with safeDestr", () => {
+    const testCases = [
+      {
+        input: '{ "__proto__": {} }',
+        output: {},
+      },
+      {
+        input: '{ "constructor": { "prototype": {} } }',
+        output: {},
+      },
+      {
+        input: '{ "constructor": { "prototype": null } }',
+        output: {},
+      },
+    ];
+
+    for (const testCase of testCases) {
+      expect(() => safeDestr(testCase.input)).toThrowError(
+        "[destr] Possible prototype pollution"
       );
     }
   });
