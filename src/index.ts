@@ -40,28 +40,30 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
     return _value.slice(1, -1) as T;
   }
 
-  const _lval = _value.toLowerCase();
-  if (_lval === "true") {
-    return true as T;
-  }
-  if (_lval === "false") {
-    return false as T;
-  }
-  if (_lval === "undefined") {
-    return undefined as T;
-  }
-  if (_lval === "null") {
-    // eslint-disable-next-line unicorn/no-null
-    return null as T;
-  }
-  if (_lval === "nan") {
-    return Number.NaN as T;
-  }
-  if (_lval === "infinity") {
-    return Number.POSITIVE_INFINITY as T;
-  }
-  if (_lval === "-infinity") {
-    return Number.NEGATIVE_INFINITY as T;
+  if (_value.length <= 9) {
+    const _lval = _value.toLowerCase();
+    if (_lval === "true") {
+      return true as T;
+    }
+    if (_lval === "false") {
+      return false as T;
+    }
+    if (_lval === "undefined") {
+      return undefined as T;
+    }
+    if (_lval === "null") {
+      // eslint-disable-next-line unicorn/no-null
+      return null as T;
+    }
+    if (_lval === "nan") {
+      return Number.NaN as T;
+    }
+    if (_lval === "infinity") {
+      return Number.POSITIVE_INFINITY as T;
+    }
+    if (_lval === "-infinity") {
+      return Number.NEGATIVE_INFINITY as T;
+    }
   }
 
   if (!JsonSigRx.test(value)) {
