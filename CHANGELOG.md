@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.0.1
+
+[compare changes](https://github.com/unjs/destr/compare/v2.0.0...v2.0.1)
+
+### 🔥 Performance
+
+- Avoid lowercasing long strings ([#81](https://github.com/unjs/destr/pull/81))
+
+### 📖 Documentation
+
+- Correct `safeDestr` example usage and tests ([#75](https://github.com/unjs/destr/pull/75))
+
+### 🏡 Chore
+
+- Update dependencies ([46c3915](https://github.com/unjs/destr/commit/46c3915))
+- Add autofix ci ([ad69b83](https://github.com/unjs/destr/commit/ad69b83))
+
+### 🎨 Styles
+
+- Format code ([5e014f9](https://github.com/unjs/destr/commit/5e014f9))
+
+### ❤️  Contributors
+
+- Pooya Parsa ([@pi0](http://github.com/pi0))
+- Webstrand <webstrand@gmail.com>
+- Frenco <hey@frenco.dev>
+
 ## v2.0.0
 
 [compare changes](https://github.com/unjs/destr/compare/v1.2.2...v2.0.0)
