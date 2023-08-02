@@ -151,7 +151,7 @@ describe("destr", () => {
 
     for (const testCase of testCases) {
       expect(() => safeDestr(testCase.input)).toThrowError(
-        testCase.output || ""
+        testCase.output || "",
       );
     }
   });
@@ -174,7 +174,7 @@ describe("destr", () => {
 
     for (const testCase of testCases) {
       expect(() => safeDestr(testCase.input)).toThrowError(
-        "[destr] Possible prototype pollution"
+        "[destr] Possible prototype pollution",
       );
     }
   });
