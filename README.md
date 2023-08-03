@@ -118,9 +118,9 @@ safeDestr("[foo");
 
 ## Benchmarks
 
-Locally try with `pnpm benchmark`. Below are esults on Node.js **v20.5.0** with MBA M2.
+Locally try with `pnpm benchmark`. Below are results on Node.js **v20.5.0** with MBA M2.
 
-**Note** `destr` is sometimes little bit slower than `JSON.parse` when parsing a valid JSON string mainly because of transform to avoid [prototype pollution](https://learn.snyk.io/lessons/prototype-pollution/javascript/) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a json string or from untrusted source like request body.
+**Note** `destr` is sometimes little bit slower than `JSON.parse` when parsing a valid JSON string mainly because of transform to avoid [prototype pollution](https://learn.snyk.io/lessons/prototype-pollution/javascript/) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a JSON string or from untrusted source like request body.
 
 ```
 === Non-string fallback ==
