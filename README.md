@@ -56,7 +56,7 @@ const obj = destr<MyInterface>("{}"); // obj is well-typed
 
 ### ✅ Fast fallback to input if is not string
 
-> 🚀 Up to 500 faster than `JSON.parse`!
+> 🚀 Up to 500 times faster than `JSON.parse`!
 
 ```js
 // Uncaught SyntaxError: Unexpected token u in JSON at position 0
