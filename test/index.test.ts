@@ -64,6 +64,10 @@ describe("destr", () => {
     expect(destr(' { "test": 123 }  ')).toStrictEqual({ test: 123 });
   });
 
+  it("parses string with escape characters", () => {
+    expect(destr('"a\\nb"')).toBe("a\nb");
+  });
+
   it("parses valid JSON texts", () => {
     const testCases: Array<{ input: string; output: unknown }> = [
       { input: "{}", output: {} },
