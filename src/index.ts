@@ -5,7 +5,7 @@ const suspectProtoRx =
 const suspectConstructorRx =
   /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)"\s*:/;
 
-const JsonSigRx = /^\s*["[{]|^\s*-?\d[\d.]{0,14}\s*$/;
+const JsonSigRx = /^\s*["[{]|^\s*-?\d{1,16}(\.\d{1,17})?([Ee][+-]?\d+)?\s*$/;
 
 function jsonParseTransform(key: string, value: any): any {
   if (

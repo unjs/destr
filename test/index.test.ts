@@ -178,4 +178,22 @@ describe("destr", () => {
       );
     }
   });
+
+  it("parses number", () => {
+    const testCases: Array<{ input: string; output: unknown }> = [
+      { input: "9", output: 9 },
+      { input: "-9", output: -9 },
+      { input: "0.30000000000000004", output: 0.300_000_000_000_000_04 },
+      { input: "9007199254740991", output: 9_007_199_254_740_991 },
+      { input: "9e2", output: 900 },
+      { input: "9e+2", output: 900 },
+      { input: "9e-2", output: 0.09 },
+      { input: "9.9e10000", output: Number.POSITIVE_INFINITY },
+      { input: "9.9e-10000", output: 0 },
+    ];
+
+    for (const testCase of testCases) {
+      expect(destr(testCase.input)).toStrictEqual(testCase.output);
+    }
+  });
 });
