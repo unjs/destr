@@ -38,7 +38,7 @@
     "prettier": "^3.0.3",
     "secure-json-parse": "^2.7.0",
     "typescript": "^5.2.2",
-    "unbuild": "^1.2.1",
+    "unbuild": "^2.0.0",
     "vitest": "^0.34.6"
   },
   "packageManager": "pnpm@8.9.2"
