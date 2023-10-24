@@ -45,7 +45,7 @@ function benchTryCatch(name, val) {
   suite.add("JSON.parse (try-catch)", () => {
     try {
       JSON.parse(val);
-    } catch (err) {
+    } catch {
       return val;
     }
   });
@@ -58,7 +58,7 @@ function benchTryCatch(name, val) {
   suite.add("sjson (try-catch)", () => {
     try {
       sjson.parse(val);
-    } catch (err) {
+    } catch {
       return val;
     }
   });
@@ -68,10 +68,14 @@ function benchTryCatch(name, val) {
   suite.run();
 }
 
-bench("Non-string fallback", 3.14159265359);
+bench("Non-string fallback", 3.141_592_653_59);
 bench("Known values", "true");
-benchTryCatch("plain string", `"SALAM"`);
 
-const pkg = fs.readFileSync("./package.json", "utf-8");
+benchTryCatch("plain string (short)", `"SALAM"`);
+
+const longStr = fs.readFileSync("./pnpm-lock.yaml", "utf8");
+benchTryCatch("plain string (long)", longStr);
+
+const pkg = fs.readFileSync("./package.json", "utf8");
 bench("package.json", pkg);
-benchTryCatch("broken object", pkg.substring(0, pkg.length - 1));
+benchTryCatch("broken object", pkg.slice(0, Math.max(0, pkg.length - 1)));
