@@ -2,7 +2,7 @@ import fs from "node:fs";
 import Benchmark from "benchmark";
 import sjson from "secure-json-parse";
 import bourne from "@hapi/bourne";
-import { destr, safeDestr } from "destr";
+import { destr, safeDestr } from "./dist/index.mjs";
 
 const { log } = console;
 
