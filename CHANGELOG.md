@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.0.2
+
+[compare changes](https://github.com/unjs/destr/compare/v2.0.1...v2.0.2)
+
+### 🩹 Fixes
+
+- Parsing decimals and scientific notation ([#94](https://github.com/unjs/destr/pull/94))
+- Avoid fast path with possible escape chars ([#89](https://github.com/unjs/destr/pull/89))
+
+### 📖 Documentation
+
+- Fix typos ([#82](https://github.com/unjs/destr/pull/82))
+- Fix typo ([#86](https://github.com/unjs/destr/pull/86))
+
+### 🏡 Chore
+
+- Update benchmarks ([eb60af1](https://github.com/unjs/destr/commit/eb60af1))
+- Update lockfile ([4dbb707](https://github.com/unjs/destr/commit/4dbb707))
+- Update benchmarks ([4f92188](https://github.com/unjs/destr/commit/4f92188))
+- Add bun to the bench results ([523f3f1](https://github.com/unjs/destr/commit/523f3f1))
+
+### ❤️ Contributors
+
+- Pooya Parsa ([@pi0](http://github.com/pi0))
+- Kricsleo 
+- Nobkd 
+- Alexander Lichter ([@manniL](http://github.com/manniL))
+
 ## v2.0.1
 
 [compare changes](https://github.com/unjs/destr/compare/v2.0.0...v2.0.1)
