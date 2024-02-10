@@ -36,7 +36,7 @@
     "changelogen": "^0.5.5",
     "eslint": "^8.56.0",
     "eslint-config-unjs": "^0.2.1",
-    "prettier": "^3.2.4",
+    "prettier": "^3.2.5",
     "secure-json-parse": "^2.7.0",
     "typescript": "^5.3.3",
     "unbuild": "^2.0.0",
