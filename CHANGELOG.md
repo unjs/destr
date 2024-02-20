@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.0.3
+
+[compare changes](https://github.com/unjs/destr/compare/v2.0.2...v2.0.3)
+
+### 🩹 Fixes
+
+- Improve compatibility with runtimes not supporting `String.prototype.at()` ([#102](https://github.com/unjs/destr/pull/102))
+
+### 🏡 Chore
+
+- Update lockfile ([930fe7b](https://github.com/unjs/destr/commit/930fe7b))
+- Update bench ([d0a83f9](https://github.com/unjs/destr/commit/d0a83f9))
+- Update readme ([72a5c5c](https://github.com/unjs/destr/commit/72a5c5c))
+- Lint ([ae61652](https://github.com/unjs/destr/commit/ae61652))
+
+### ✅ Tests
+
+- Test with node 20 ([a33a2e1](https://github.com/unjs/destr/commit/a33a2e1))
+
+### ❤️ Contributors
+
+- Pooya Parsa ([@pi0](http://github.com/pi0))
+- Allenyu ([@AllenYu0118](http://github.com/AllenYu0118))
+
 ## v2.0.2
 
 [compare changes](https://github.com/unjs/destr/compare/v2.0.1...v2.0.2)
