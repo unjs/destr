@@ -56,8 +56,6 @@ const obj = destr<MyInterface>("{}"); // obj is well-typed
 
 ### ✅ Fast fallback to input if is not string
 
-> 🚀 Up to 500 times faster than `JSON.parse`!
-
 ```js
 // Uncaught SyntaxError: Unexpected token u in JSON at position 0
 JSON.parse();
@@ -68,8 +66,6 @@ destr();
 
 ### ✅ Fast lookup for known string values
 
-> 🚀 Up to 900 times faster than `JSON.parse`!
-
 ```js
 // Uncaught SyntaxError: Unexpected token T in JSON at position 0
 JSON.parse("TRUE");
@@ -79,8 +75,6 @@ destr("TRUE");
 ```
 
 ### ✅ Fallback to original value if parse fails (empty or any plain string)
-
-> 🚀 Up to 900 times faster than `JSON.parse`!
 
 ```js
 // Uncaught SyntaxError: Unexpected token s in JSON at position 0
@@ -118,9 +112,9 @@ safeDestr("[foo");
 
 ## Benchmarks
 
-`destr` is sometimes little bit slower than `JSON.parse` when parsing a valid JSON string mainly because of transform to avoid [prototype pollution](https://learn.snyk.io/lessons/prototype-pollution/javascript/) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a JSON string or from untrusted source like request body.
+`destr` is faster generally for arbitrary inputs but also sometimes little bit slower than `JSON.parse` when parsing a valid JSON string mainly because of transform to avoid [prototype pollution](https://learn.snyk.io/lessons/prototype-pollution/javascript/) which can lead to serious security issues if not being sanitized. In the other words, `destr` is better when input is not always a JSON string or from untrusted source like request body.
 
-Check [Benchmarks](./BENCH.md)
+Check [Benchmark Results](./BENCH.md) or run with `pnpm run bench:node` or `pnpm run bench:bun` yourself!
 
 ## License
 
