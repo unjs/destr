@@ -1,8 +1,7 @@
-
 import fs from "node:fs";
 import sjson from "secure-json-parse";
 import bourne from "@hapi/bourne";
-import { bench, run, group, baseline } from 'mitata'
+import { bench, run, group, baseline } from "mitata";
 import { destr, safeDestr } from "../dist/index.mjs";
 
 function addBench(name, val) {
@@ -22,7 +21,7 @@ function addBench(name, val) {
     bench("@hapi/bourne", () => {
       bourne.parse(val);
     });
-  })
+  });
 }
 
 function addTryCatchBench(name, val) {
@@ -62,7 +61,7 @@ function addTryCatchBench(name, val) {
         return val;
       }
     });
-  })
+  });
 }
 
 addBench("Non-string fallback", 3.141_592_653_59);
@@ -79,4 +78,4 @@ addTryCatchBench("broken object", pkg.slice(0, Math.max(0, pkg.length - 1)));
 
 await run({
   percentiles: false,
-})
+});
