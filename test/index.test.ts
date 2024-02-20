@@ -143,20 +143,22 @@ describe("destr", () => {
     }
   });
 
-  it("throws an error if it's a invalid JSON texts with safeDestr", () => {
+  describe("throws an error if it's a invalid JSON texts with safeDestr", () => {
     const testCases = [
-      { input: "{     ", output: "Unexpected end of JSON input" },
+      { input: "{     ", output: "Expected property name or" },
       { input: "[     ", output: "Unexpected end of JSON input" },
-      { input: '"     ', output: "Unexpected end of JSON input" },
-      { input: "[1,2,3]?", output: "Unexpected token" },
+      { input: '"     ', output: "Unterminated string in JSON at position" },
+      { input: "[1,2,3]?", output: "Unexpected non-whitespace character" },
       { input: "invalid JSON text", output: "Invalid JSON" },
-      { input: ' "Invalid', output: "Unexpected end of JSON input" },
+      { input: ' "Invalid', output: "Unterminated string in JSON at position" },
     ];
 
     for (const testCase of testCases) {
-      expect(() => safeDestr(testCase.input)).toThrowError(
-        testCase.output || "",
-      );
+      it(testCase.input, () => {
+        expect(() => safeDestr(testCase.input)).toThrowError(
+          testCase.output || "",
+        );
+      });
     }
   });
 
