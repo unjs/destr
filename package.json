@@ -38,9 +38,9 @@
     "mitata": "^0.1.11",
     "prettier": "^3.2.5",
     "secure-json-parse": "^2.7.0",
-    "typescript": "^5.4.3",
+    "typescript": "^5.4.4",
     "unbuild": "^2.0.0",
     "vitest": "^1.4.0"
   },
-  "packageManager": "pnpm@8.15.5"
+  "packageManager": "pnpm@8.15.6"
 }
