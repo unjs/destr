@@ -2,7 +2,10 @@
   "name": "destr",
   "version": "2.0.3",
   "description": "A faster, secure and convenient alternative for JSON.parse",
-  "repository": "unjs/destr",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unjs/destr.git"
+  },
   "license": "MIT",
   "type": "module",
   "exports": {
