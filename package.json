@@ -31,16 +31,16 @@
   },
   "devDependencies": {
     "@hapi/bourne": "^3.0.0",
-    "@vitest/coverage-v8": "^1.5.3",
+    "@vitest/coverage-v8": "^1.6.0",
     "changelogen": "^0.5.5",
     "eslint": "^8.57.0",
-    "eslint-config-unjs": "^0.2.1",
+    "eslint-config-unjs": "^0.3.2",
     "mitata": "^0.1.11",
-    "prettier": "^3.2.5",
+    "prettier": "^3.3.3",
     "secure-json-parse": "^2.7.0",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.4",
     "unbuild": "^2.0.0",
-    "vitest": "^1.5.3"
+    "vitest": "^1.6.0"
   },
-  "packageManager": "pnpm@8.15.8"
+  "packageManager": "pnpm@8.15.9"
 }
