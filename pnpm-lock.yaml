@@ -21,8 +21,8 @@ devDependencies:
     specifier: ^0.2.1
     version: 0.2.1(eslint@8.57.0)(typescript@5.4.5)
   mitata:
-    specifier: ^0.1.11
-    version: 0.1.11
+    specifier: ^1.0.34
+    version: 1.0.34
   prettier:
     specifier: ^3.2.5
     version: 3.2.5
@@ -3186,8 +3186,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /mitata@0.1.11:
-    resolution: {integrity: sha512-cs6FiWcnRxn7atVumm8wA8R70XCDmMXgVgb/qWUSjr5dwuIBr7zC+22mbGYPlbyFixlIOjuP//A0e72Q1ZoGDw==}
+  /mitata@1.0.34:
+    resolution: {integrity: sha512-Mc3zrtNBKIMeHSCQ0XqRLo1vbdIx1wvFV9c8NJAiyho6AjNfMY8bVhbS12bwciUdd1t4rj8099CH3N3NFahaUA==}
     dev: true
 
   /mkdirp@1.0.4:
