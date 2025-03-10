@@ -65,7 +65,7 @@ function addTryCatchBench(name, val) {
 }
 
 addBench("Non-string fallback", 3.141_592_653_59);
-addBench("Known values", "true");
+addBench("Known values", "-infinity");
 
 addTryCatchBench("plain string (short)", `"SALAM"`);
 
