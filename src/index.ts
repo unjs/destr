@@ -36,7 +36,7 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   if (
     // eslint-disable-next-line unicorn/prefer-at
     value[0] === '"' &&
-    value.endsWith('"') &&
+    value.at(-1) === '"' &&
     // eslint-disable-next-line unicorn/prefer-includes
     value.indexOf("\\") === -1
   ) {
