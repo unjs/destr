@@ -33,16 +33,16 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   if (typeof value !== "string") {
     return value;
   }
-
-  const _value = value.trim();
   if (
     // eslint-disable-next-line unicorn/prefer-at
     value[0] === '"' &&
     value.endsWith('"') &&
     !value.includes("\\")
   ) {
-    return _value.slice(1, -1) as T;
+    return value.slice(1, -1) as T;
   }
+
+  const _value = value.trim();
 
   if (_value.length <= 9) {
     const _lval = _value.toLowerCase();
