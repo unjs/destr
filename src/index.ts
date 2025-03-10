@@ -46,28 +46,29 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   const _value = value.trim();
 
   if (_value.length <= 9) {
-    const _lval = _value.toLowerCase();
-    if (_lval === "true") {
-      return true as T;
-    }
-    if (_lval === "false") {
-      return false as T;
-    }
-    if (_lval === "undefined") {
-      return undefined as T;
-    }
-    if (_lval === "null") {
-      // eslint-disable-next-line unicorn/no-null
-      return null as T;
-    }
-    if (_lval === "nan") {
-      return Number.NaN as T;
-    }
-    if (_lval === "infinity") {
-      return Number.POSITIVE_INFINITY as T;
-    }
-    if (_lval === "-infinity") {
-      return Number.NEGATIVE_INFINITY as T;
+    switch (_value.toLowerCase()) {
+      case "true": {
+        return true as T;
+      }
+      case "false": {
+        return false as T;
+      }
+      case "undefined": {
+        return undefined as T;
+      }
+      case "null": {
+        // eslint-disable-next-line unicorn/no-null
+        return null as T;
+      }
+      case "nan": {
+        return Number.NaN as T;
+      }
+      case "infinity": {
+        return Number.POSITIVE_INFINITY as T;
+      }
+      case "-infinity": {
+        return Number.NEGATIVE_INFINITY as T;
+      }
     }
   }
 
