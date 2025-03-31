@@ -1,8 +1,0 @@
-{
-  "extends": [
-    "eslint-config-unjs"
-  ],
-  "rules": {
-    "quotes": "off"
-  }
-}

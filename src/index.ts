@@ -35,9 +35,7 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   }
   if (
     value[0] === '"' &&
-    // eslint-disable-next-line unicorn/prefer-at
     value[value.length - 1] === '"' &&
-    // eslint-disable-next-line unicorn/prefer-includes
     value.indexOf("\\") === -1
   ) {
     return value.slice(1, -1) as T;
@@ -57,7 +55,6 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
         return undefined as T;
       }
       case "null": {
-        // eslint-disable-next-line unicorn/no-null
         return null as T;
       }
       case "nan": {
