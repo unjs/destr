@@ -35,12 +35,7 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   }
 
   const _value = value.trim();
-  if (
-    // eslint-disable-next-line unicorn/prefer-at
-    value[0] === '"' &&
-    value.endsWith('"') &&
-    !value.includes("\\")
-  ) {
+  if (value[0] === '"' && value.endsWith('"') && !value.includes("\\")) {
     return _value.slice(1, -1) as T;
   }
 
@@ -56,7 +51,6 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
       return undefined as T;
     }
     if (_lval === "null") {
-      // eslint-disable-next-line unicorn/no-null
       return null as T;
     }
     if (_lval === "nan") {
