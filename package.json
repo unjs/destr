@@ -4,6 +4,7 @@
   "description": "A faster, secure and convenient alternative for JSON.parse",
   "repository": "unjs/destr",
   "license": "MIT",
+  "sideEffects": false,
   "type": "module",
   "exports": {
     ".": {
