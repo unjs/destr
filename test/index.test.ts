@@ -9,7 +9,6 @@ describe("destr", () => {
       { input: 123 },
       { input: true },
       { input: false },
-      /* eslint-disable-next-line unicorn/no-null */
       { input: null },
       { input: Number.POSITIVE_INFINITY },
       { input: Number.NEGATIVE_INFINITY },
@@ -32,10 +31,8 @@ describe("destr", () => {
   });
 
   it("parses string 'null' as `null`", () => {
-    /* eslint-disable unicorn/no-null */
     expect(destr("null")).toBeNull();
     expect(destr("NULL")).toBeNull();
-    /* eslint-enable unicorn/no-null */
   });
 
   it("parses string 'NaN' as `Number.NaN` case-insensitively", () => {
@@ -74,7 +71,6 @@ describe("destr", () => {
       { input: "[]", output: [] },
       { input: '{ "key": "value" }', output: { key: "value" } },
       { input: '{ "constructor": "value" }', output: { constructor: "value" } },
-      // eslint-disable-next-line unicorn/no-null
       { input: '{ "constructor": null }', output: { constructor: null } },
       { input: "[1,2,3]", output: [1, 2, 3] },
     ];
@@ -89,7 +85,6 @@ describe("destr", () => {
       .spyOn(console, "warn")
       .mockImplementation((message: string) => console.log(message));
 
-    // eslint-disable-next-line unicorn/consistent-function-scoping
     const warnMessage = (key: string) =>
       `[destr] Dropping "${key}" key to prevent prototype pollution.`;
 
