@@ -19,6 +19,7 @@
     "dist",
     "lib"
   ],
+  "sideEffects": false,
   "scripts": {
     "bench:bun": "pnpm build && bun --bun ./test/bench.mjs",
     "bench:node": "pnpm build && node ./test/bench.mjs",
