@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.0.4
+
+[compare changes](https://github.com/unjs/destr/compare/v2.0.3...v2.0.4)
+
+### 🔥 Performance
+
+- Faster plain string and known value checks ([#136](https://github.com/unjs/destr/pull/136))
+
+### 📦 Build
+
+- Add `sideEffects` to package.json ([#137](https://github.com/unjs/destr/pull/137))
+
+### 🏡 Chore
+
+- Update lock ([6a75e33](https://github.com/unjs/destr/commit/6a75e33))
+- Update deps ([0f07d2d](https://github.com/unjs/destr/commit/0f07d2d))
+- Update ci ([adb700a](https://github.com/unjs/destr/commit/adb700a))
+- Update eslint ([7b506be](https://github.com/unjs/destr/commit/7b506be))
+- Update deps ([f932569](https://github.com/unjs/destr/commit/f932569))
+
+### ❤️ Contributors
+
+- Pooya Parsa ([@pi0](https://github.com/pi0))
+- Balázs Németh ([@zsilbi](https://github.com/zsilbi))
+- Denisx ([@denisx](https://github.com/denisx))
+
 ## v2.0.3
 
 [compare changes](https://github.com/unjs/destr/compare/v2.0.2...v2.0.3)
