@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.0.5
+
+[compare changes](https://github.com/unjs/destr/compare/v2.0.4...v2.0.5)
+
+### 📦 Build
+
+- Downgrade unbuild to avoid cjs type regression ([09889c2](https://github.com/unjs/destr/commit/09889c2))
+
+### ❤️ Contributors
+
+- Pooya Parsa ([@pi0](https://github.com/pi0))
+
 ## v2.0.4
 
 [compare changes](https://github.com/unjs/destr/compare/v2.0.3...v2.0.4)
