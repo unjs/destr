@@ -40,7 +40,7 @@
     "prettier": "^3.6.2",
     "secure-json-parse": "^4.0.0",
     "typescript": "^5.9.2",
-    "unbuild": "~3.6.0",
+    "unbuild": "~3.6.1",
     "vitest": "^3.2.4"
   },
   "packageManager": "pnpm@10.14.0"
