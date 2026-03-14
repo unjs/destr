@@ -197,4 +197,24 @@ describe("destr", () => {
       expect(destr(testCase.input)).toStrictEqual(testCase.output);
     }
   });
+
+  it("returns large integer strings as-is to prevent silent precision loss (#152)", () => {
+    // Numbers beyond Number.MAX_SAFE_INTEGER cannot be reliably represented
+    // as JS floats — destr must return the original string to avoid corruption.
+    const testCases = [
+      "9007199254740992", // MAX_SAFE_INTEGER + 1 (2^53)
+      "9007199254740993", // exact value from issue report → would silently become 9007199254740992
+      "-9007199254740993",
+    ];
+
+    for (const input of testCases) {
+      expect(destr(input)).toStrictEqual(input);
+    }
+  });
+
+  it("throws on large integer strings in strict mode (#152)", () => {
+    expect(() => safeDestr("9007199254740993")).toThrowError(
+      "[destr] Loss of precision for large integer string",
+    );
+  });
 });

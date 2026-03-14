@@ -83,7 +83,22 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
       }
       return JSON.parse(value, jsonParseTransform);
     }
-    return JSON.parse(value);
+    const result = JSON.parse(value);
+    // Guard against silent precision loss for integers beyond MAX_SAFE_INTEGER.
+    // e.g. '9007199254740993' would silently become 9007199254740992.
+    if (
+      typeof result === "number" &&
+      Number.isInteger(result) &&
+      !Number.isSafeInteger(result)
+    ) {
+      if (options.strict) {
+        throw new SyntaxError(
+          `[destr] Loss of precision for large integer string: "${value}"`,
+        );
+      }
+      return value as T;
+    }
+    return result;
   } catch (error) {
     if (options.strict) {
       throw error;
