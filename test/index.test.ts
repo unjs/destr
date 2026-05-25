@@ -12,6 +12,7 @@ describe("destr", () => {
       { input: null },
       { input: Number.POSITIVE_INFINITY },
       { input: Number.NEGATIVE_INFINITY },
+      { input: BigInt(9_007_199_254_740_991) },
       { input: undefined },
     ];
 
@@ -48,6 +49,16 @@ describe("destr", () => {
   it("parses string '-infinity' as `Number.NEGATIVE_INFINITY` case-insensitively", () => {
     expect(destr("-infinity")).toStrictEqual(Number.NEGATIVE_INFINITY);
     expect(destr("-Infinity")).toStrictEqual(Number.NEGATIVE_INFINITY);
+  });
+
+  it("parses string bigint as `BigInt()`", () => {
+    expect(destr("9007199254740991")).toStrictEqual(9_007_199_254_740_991);
+    expect(destr(BigInt("9007199254740991"))).toStrictEqual(
+      BigInt(9_007_199_254_740_991),
+    );
+    expect(destr(BigInt(9_007_199_254_740_991))).toStrictEqual(
+      BigInt(9_007_199_254_740_991),
+    );
   });
 
   it("parses string 'undefined' as `undefined` case-insensitively", () => {
