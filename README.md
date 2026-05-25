@@ -37,10 +37,14 @@ const { destr, safeDestr } = require("destr");
 ### Deno
 
 ```js
-import { destr, safeDestr } from "https://deno.land/x/destr/src/index.ts";
+import { destr, safeDestr } from "npm:destr";
+// or
+import { destr, safeDestr } from "https://unpkg.com/destr/dist/index.mjs";
 
 console.log(destr('{ "deno": "yay" }'));
 ```
+
+> **Note:** `https://deno.land/x/destr` currently resolves to v1.0.0, which only provides a default export. Use `npm:destr` or the unpkg URL above for v2 named exports.
 
 ## Why?
 
