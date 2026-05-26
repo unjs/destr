@@ -7,6 +7,18 @@ const suspectConstructorRx =
 
 const JsonSigRx = /^\s*["[{]|^\s*-?\d{1,16}(\.\d{1,17})?([Ee][+-]?\d+)?\s*$/;
 
+function isUnsafeIntegerString(value: string): boolean {
+  const trimmed = value.trim();
+  if (!/^-?\d+$/.test(trimmed)) {
+    return false;
+  }
+  const asBigInt = BigInt(trimmed);
+  return (
+    asBigInt > BigInt(Number.MAX_SAFE_INTEGER) ||
+    asBigInt < BigInt(Number.MIN_SAFE_INTEGER)
+  );
+}
+
 function jsonParseTransform(key: string, value: any): any {
   if (
     key === "__proto__" ||
@@ -74,6 +86,10 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
       throw new SyntaxError("[destr] Invalid JSON");
     }
     return value as T;
+  }
+
+  if (isUnsafeIntegerString(_value)) {
+    return _value as T;
   }
 
   try {
