@@ -5,21 +5,7 @@ const suspectProtoRx =
 const suspectConstructorRx =
   /"(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)"\s*:/;
 
-const JsonSigRx = /^\s*["[{]|^\s*-?\d{1,16}(\.\d{1,17})?([Ee][+-]?\d+)?\s*$/;
-
-function jsonParseTransform(key: string, value: any): any {
-  if (
-    key === "__proto__" ||
-    (key === "constructor" &&
-      value &&
-      typeof value === "object" &&
-      "prototype" in value)
-  ) {
-    warnKeyDropped(key);
-    return;
-  }
-  return value;
-}
+const JsonSigRx = /^\s*["[{]|^\s*-?\d+(\.\d+)?([Ee][+-]?\d+)?\s*$/;
 
 function warnKeyDropped(key: string): void {
   console.warn(`[destr] Dropping "${key}" key to prevent prototype pollution.`);
@@ -27,12 +13,22 @@ function warnKeyDropped(key: string): void {
 
 export type Options = {
   strict?: boolean;
+  reviver?: (this: any, key: string, value: any) => any;
 };
 
-export function destr<T = unknown>(value: any, options: Options = {}): T {
+export function destr<T = unknown>(
+  value: any,
+  optionsOrReviver?: Options | ((this: any, key: string, value: any) => any),
+): T {
   if (typeof value !== "string") {
     return value;
   }
+
+  const options =
+    typeof optionsOrReviver === "function"
+      ? { reviver: optionsOrReviver }
+      : optionsOrReviver || {};
+
   if (
     value[0] === '"' &&
     value[value.length - 1] === '"' &&
@@ -81,9 +77,24 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
       if (options.strict) {
         throw new Error("[destr] Possible prototype pollution");
       }
-      return JSON.parse(value, jsonParseTransform);
+      return JSON.parse(value, function (this: any, key, val) {
+        if (
+          key === "__proto__" ||
+          (key === "constructor" &&
+            val &&
+            typeof val === "object" &&
+            "prototype" in val)
+        ) {
+          warnKeyDropped(key);
+          return;
+        }
+        if (options.reviver) {
+          return options.reviver.call(this, key, val);
+        }
+        return val;
+      });
     }
-    return JSON.parse(value);
+    return JSON.parse(value, options.reviver);
   } catch (error) {
     if (options.strict) {
       throw error;
@@ -92,7 +103,14 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   }
 }
 
-export function safeDestr<T = unknown>(value: any, options: Options = {}): T {
+export function safeDestr<T = unknown>(
+  value: any,
+  optionsOrReviver?: Options | ((this: any, key: string, value: any) => any),
+): T {
+  const options =
+    typeof optionsOrReviver === "function"
+      ? { reviver: optionsOrReviver }
+      : optionsOrReviver || {};
   return destr<T>(value, { ...options, strict: true });
 }
 
