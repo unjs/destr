@@ -200,10 +200,13 @@ describe("destr", () => {
 
   it("parses huge numbers without throwing in safeDestr", () => {
     const hugeNumber = "123456789012345678901234567890";
+    const expected = JSON.parse(hugeNumber);
     // 默认模式下应该解析为数字类型（即便有精度损失，也应符合原生 JSON.parse 行为）
     expect(typeof destr(hugeNumber)).toBe("number");
+    expect(destr(hugeNumber)).toBe(expected);
     // 严格模式下不应抛出 "Invalid JSON" 错误
     expect(typeof safeDestr(hugeNumber)).toBe("number");
+    expect(safeDestr(hugeNumber)).toBe(expected);
   });
 
   describe("reviver support", () => {
@@ -224,6 +227,7 @@ describe("destr", () => {
         return value;
       };
       expect(destr(input, reviver)).toStrictEqual({ a: 10, b: 2 });
+      expect(safeDestr(input, reviver)).toStrictEqual({ a: 10, b: 2 });
     });
 
     it("chains reviver with prototype pollution filter", () => {
@@ -236,6 +240,34 @@ describe("destr", () => {
       // __proto__ 键应该在到达用户指定的 reviver 前被过滤，因此不应触发 reviver
       expect(reviver).not.toHaveBeenCalledWith("__proto__", expect.any(Object));
       expect(reviver).toHaveBeenCalledWith("a", 1);
+    });
+
+    it("preserves correct `this` binding in reviver", () => {
+      const input = '{"a": 1, "b": {"c": 2}}';
+      const thisValues: any[] = [];
+      const reviver = function (this: any, key: string, value: any) {
+        if (key === "c") {
+          thisValues.push(this);
+        }
+        return value;
+      };
+      destr(input, { reviver });
+      expect(thisValues.length).toBe(1);
+      expect(thisValues[0]).toHaveProperty("c", 2);
+    });
+
+    it("preserves correct `this` binding in prototype pollution safe mode", () => {
+      const input = '{"__proto__": {}, "a": 1, "b": {"c": 2}}';
+      const thisValues: any[] = [];
+      const reviver = function (this: any, key: string, value: any) {
+        if (key === "c") {
+          thisValues.push(this);
+        }
+        return value;
+      };
+      destr(input, { reviver });
+      expect(thisValues.length).toBe(1);
+      expect(thisValues[0]).toHaveProperty("c", 2);
     });
   });
 });

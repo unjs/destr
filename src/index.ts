@@ -77,7 +77,7 @@ export function destr<T = unknown>(
       if (options.strict) {
         throw new Error("[destr] Possible prototype pollution");
       }
-      return JSON.parse(value, (key, val) => {
+      return JSON.parse(value, function (this: any, key, val) {
         if (
           key === "__proto__" ||
           (key === "constructor" &&
@@ -89,7 +89,7 @@ export function destr<T = unknown>(
           return;
         }
         if (options.reviver) {
-          return options.reviver(key, val);
+          return options.reviver.call(this, key, val);
         }
         return val;
       });
