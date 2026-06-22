@@ -138,6 +138,12 @@ describe("destr", () => {
     }
   });
 
+  it("does not treat a lone double-quote as an empty string", () => {
+    // A single `"` is invalid JSON (JSON.parse('"') throws). The fast path
+    // must not collapse it to "" by slicing the same char as start and end.
+    expect(destr('"')).toStrictEqual('"');
+  });
+
   describe("throws an error if it's a invalid JSON texts with safeDestr", () => {
     const testCases = [
       { input: "{     ", output: "Expected property name or" },
@@ -146,6 +152,7 @@ describe("destr", () => {
       { input: "[1,2,3]?", output: "Unexpected non-whitespace character" },
       { input: "invalid JSON text", output: "Invalid JSON" },
       { input: ' "Invalid', output: "Unterminated string in JSON at position" },
+      { input: '"', output: "Unterminated string in JSON at position" },
     ];
 
     for (const testCase of testCases) {
