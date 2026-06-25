@@ -44,15 +44,22 @@ console.log(destr('{ "deno": "yay" }'));
 
 ## Why?
 
-### ✅ Type Safe
+### ✅ Better Type Safety
 
 ```ts
 const obj = JSON.parse("{}"); // obj type is any
 
 const obj = destr("{}"); // obj type is unknown by default
 
-const obj = destr<MyInterface>("{}"); // obj is well-typed
+const obj = destr<MyInterface>("{}"); // obj is typed as MyInterface
 ```
+
+`destr` returns `unknown` by default instead of `any`, so you have to narrow the
+value before using it. Passing a type parameter (`destr<MyInterface>(...)`) only
+casts the result for the type checker; it does **not** validate the parsed value
+at runtime. If you need runtime validation, pass the output through a schema
+parser such as [zod](https://zod.dev), [valibot](https://valibot.dev) or
+[arktype](https://arktype.io).
 
 ### ✅ Fast fallback to input if is not string
 
