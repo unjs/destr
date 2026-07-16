@@ -37,7 +37,7 @@ const { destr, safeDestr } = require("destr");
 ### Deno
 
 ```js
-import { destr, safeDestr } from "https://deno.land/x/destr/src/index.ts";
+import { destr, safeDestr } from "npm:destr";
 
 console.log(destr('{ "deno": "yay" }'));
 ```
