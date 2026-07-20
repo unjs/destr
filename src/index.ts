@@ -27,6 +27,12 @@ function warnKeyDropped(key: string): void {
 
 export type Options = {
   strict?: boolean;
+  /**
+   * When `true`, integer strings beyond Number.MAX_SAFE_INTEGER are returned
+   * as `BigInt` instead of a lossy `number`, avoiding precision loss for large
+   * `long`/`bigint` values coming from a JSON backend. See issue #73.
+   */
+  strictBigInt?: boolean;
 };
 
 export function destr<T = unknown>(value: any, options: Options = {}): T {
@@ -66,6 +72,13 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
       case "-infinity": {
         return Number.NEGATIVE_INFINITY as T;
       }
+    }
+  }
+
+  if (options.strictBigInt && /^-?\d+$/.test(_value)) {
+    const asNumber = Number(_value);
+    if (!Number.isSafeInteger(asNumber)) {
+      return BigInt(_value) as T;
     }
   }
 
