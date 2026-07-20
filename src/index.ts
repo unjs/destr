@@ -27,6 +27,13 @@ function warnKeyDropped(key: string): void {
 
 export type Options = {
   strict?: boolean;
+  /**
+   * A JSON.parse-style reviver applied to the parsed value's keys (bottom-up).
+   * Use it to transform parsed values — e.g. convert `null` to `undefined` for
+   * uniform checks. See issue #141. Composed with destr's internal transform so
+   * the reviver sees the final value.
+   */
+  reviver?: (this: any, key: string, value: any) => any;
 };
 
 export function destr<T = unknown>(value: any, options: Options = {}): T {
@@ -77,13 +84,17 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   }
 
   try {
+    const parseReviver = options.reviver;
+    const composed = parseReviver
+      ? (key: string, value: any) => parseReviver.call(value, key, jsonParseTransform(key, value))
+      : jsonParseTransform;
     if (suspectProtoRx.test(value) || suspectConstructorRx.test(value)) {
       if (options.strict) {
         throw new Error("[destr] Possible prototype pollution");
       }
-      return JSON.parse(value, jsonParseTransform);
+      return JSON.parse(value, composed);
     }
-    return JSON.parse(value);
+    return JSON.parse(value, parseReviver ?? undefined);
   } catch (error) {
     if (options.strict) {
       throw error;
