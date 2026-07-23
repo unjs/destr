@@ -44,15 +44,17 @@ console.log(destr('{ "deno": "yay" }'));
 
 ## Why?
 
-### ✅ Type Safe
+### ✅ Better type safety
 
 ```ts
 const obj = JSON.parse("{}"); // obj type is any
 
 const obj = destr("{}"); // obj type is unknown by default
 
-const obj = destr<MyInterface>("{}"); // obj is well-typed
+const obj = destr<MyInterface>("{}"); // obj is typed as MyInterface
 ```
+
+`destr` does **not** validate runtime data against the type parameter. The generic only asserts the TypeScript type. Use a schema parser (for example [Zod](https://zod.dev/) or [Valibot](https://valibot.dev/)) when you need runtime validation.
 
 ### ✅ Fast fallback to input if is not string
 
