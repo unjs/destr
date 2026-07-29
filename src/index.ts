@@ -76,6 +76,25 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
     return value as T;
   }
 
+  if (_value[0] === "-" || (_value[0] >= "0" && _value[0] <= "9")) {
+    const num = Number(_value);
+    if (
+      num !== Number.POSITIVE_INFINITY &&
+      num !== Number.NEGATIVE_INFINITY &&
+      (num > Number.MAX_SAFE_INTEGER || num < Number.MIN_SAFE_INTEGER)
+    ) {
+      return value as T;
+    }
+    const withoutSign = _value.startsWith("-") ? _value.slice(1) : _value;
+    if (
+      withoutSign.length > 1 &&
+      withoutSign[0] === "0" &&
+      withoutSign[1] !== "."
+    ) {
+      return value as T;
+    }
+  }
+
   try {
     if (suspectProtoRx.test(value) || suspectConstructorRx.test(value)) {
       if (options.strict) {
