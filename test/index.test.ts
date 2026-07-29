@@ -197,4 +197,44 @@ describe("destr", () => {
       expect(destr(testCase.input)).toStrictEqual(testCase.output);
     }
   });
+
+  it("returns string for numbers exceeding safe integer range to avoid precision loss", () => {
+    const testCases: Array<{ input: string; output: unknown }> = [
+      { input: "9007199254740993", output: "9007199254740993" },
+      { input: "-9007199254740993", output: "-9007199254740993" },
+      { input: "99999999999999999", output: "99999999999999999" },
+      { input: "12345678901234567890", output: "12345678901234567890" },
+    ];
+
+    for (const testCase of testCases) {
+      expect(destr(testCase.input)).toStrictEqual(testCase.output);
+    }
+  });
+
+  it("returns string for numbers with leading zeros to preserve them", () => {
+    const testCases: Array<{ input: string; output: unknown }> = [
+      { input: "00123", output: "00123" },
+      { input: "01", output: "01" },
+      { input: "-01", output: "-01" },
+      { input: "00", output: "00" },
+    ];
+
+    for (const testCase of testCases) {
+      expect(destr(testCase.input)).toStrictEqual(testCase.output);
+    }
+  });
+
+  it("still parses safe integer strings as numbers", () => {
+    const testCases: Array<{ input: string; output: unknown }> = [
+      { input: "9007199254740991", output: 9007199254740991 },
+      { input: "-9007199254740991", output: -9007199254740991 },
+      { input: "0", output: 0 },
+      { input: "0.5", output: 0.5 },
+      { input: "-0", output: -0 },
+    ];
+
+    for (const testCase of testCases) {
+      expect(destr(testCase.input)).toStrictEqual(testCase.output);
+    }
+  });
 });
