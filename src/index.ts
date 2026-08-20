@@ -27,6 +27,7 @@ function warnKeyDropped(key: string): void {
 
 export type Options = {
   strict?: boolean;
+  reviver?: (key: string, value: any) => any;
 };
 
 export function destr<T = unknown>(value: any, options: Options = {}): T {
@@ -81,9 +82,15 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
       if (options.strict) {
         throw new Error("[destr] Possible prototype pollution");
       }
-      return JSON.parse(value, jsonParseTransform);
+      return JSON.parse(value, (key, value) => {
+        const transformed = jsonParseTransform(key, value);
+        if (transformed === undefined && value !== undefined) {
+          return undefined; // dropped by jsonParseTransform
+        }
+        return options.reviver ? options.reviver(key, transformed) : transformed;
+      });
     }
-    return JSON.parse(value);
+    return JSON.parse(value, options.reviver);
   } catch (error) {
     if (options.strict) {
       throw error;

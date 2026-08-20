@@ -197,4 +197,30 @@ describe("destr", () => {
       expect(destr(testCase.input)).toStrictEqual(testCase.output);
     }
   });
+
+  describe("reviver", () => {
+    it("applies reviver correctly", () => {
+      const input = '{"a": 1, "b": null, "c": 3}';
+      const result = destr(input, {
+        reviver: (key, value) => (value === null ? undefined : value),
+      });
+      expect(result).toStrictEqual({ a: 1, c: 3 });
+    });
+
+    it("applies reviver alongside prototype pollution prevention", () => {
+      const spy = vi
+        .spyOn(console, "warn")
+        .mockImplementation((message: string) => console.log(message));
+
+      const input = '{"a": 1, "__proto__": {"b": 2}}';
+      const result = destr(input, {
+        reviver: (key, value) => (key === "a" ? value * 10 : value),
+      });
+      
+      expect(result).toStrictEqual({ a: 10 });
+      expect(spy).toHaveBeenCalledWith(
+        '[destr] Dropping "__proto__" key to prevent prototype pollution.',
+      );
+    });
+  });
 });
