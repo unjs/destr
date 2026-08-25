@@ -197,4 +197,10 @@ describe("destr", () => {
       expect(destr(testCase.input)).toStrictEqual(testCase.output);
     }
   });
+  it("preserves large integer strings exceeding MAX_SAFE_INTEGER as string to prevent precision loss", () => {
+    const raw = "9007199254740993";
+    expect(destr(raw)).toStrictEqual(raw);
+    expect(destr("-9007199254740993")).toStrictEqual("-9007199254740993");
+    expect(destr("9007199254740991")).toStrictEqual(9_007_199_254_740_991);
+  });
 });
