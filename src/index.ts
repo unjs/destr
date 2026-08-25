@@ -83,7 +83,15 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
       }
       return JSON.parse(value, jsonParseTransform);
     }
-    return JSON.parse(value);
+    const parsed = JSON.parse(value);
+    if (
+      typeof parsed === "number" &&
+      !Number.isSafeInteger(parsed) &&
+      /^\s*-?\d+\s*$/.test(value)
+    ) {
+      return value as T;
+    }
+    return parsed;
   } catch (error) {
     if (options.strict) {
       throw error;
