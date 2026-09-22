@@ -7,6 +7,13 @@ const suspectConstructorRx =
 
 const JsonSigRx = /^\s*["[{]|^\s*-?\d{1,16}(\.\d{1,17})?([Ee][+-]?\d+)?\s*$/;
 
+// A complete JSON string literal that needs no unescaping: one pair of quotes
+// around characters that are legal unescaped inside a JSON string (anything
+// but `"`, `\` and the C0 controls). Matching this means `JSON.parse` would
+// return the inner slice verbatim, so the parse can be skipped entirely.
+// eslint-disable-next-line no-control-regex -- the class rejects them on purpose
+const PlainStringRx = /^"[^"\\\u0000-\u001F]*"$/;
+
 function jsonParseTransform(key: string, value: any): any {
   if (
     key === "__proto__" ||
@@ -33,10 +40,14 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   if (typeof value !== "string") {
     return value;
   }
+  // Fast path for a plain JSON string literal: no escapes to expand, so the
+  // inner slice is exactly what `JSON.parse` would return. The two character
+  // checks reject non-strings before the regex runs.
   if (
-    value[0] === '"' &&
-    value[value.length - 1] === '"' &&
-    value.indexOf("\\") === -1
+    value.charCodeAt(0) === 34 /* " */ &&
+    value.charCodeAt(value.length - 1) === 34 &&
+    value.indexOf("\\") === -1 &&
+    PlainStringRx.test(value)
   ) {
     return value.slice(1, -1) as T;
   }

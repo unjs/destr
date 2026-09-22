@@ -138,6 +138,26 @@ describe("destr", () => {
     }
   });
 
+  it("does not take the fast path for an unterminated or multi-part string", () => {
+    // The fast path used to check only first char, last char and the absence
+    // of a backslash, so anything quoted at both ends was returned sliced
+    // without ever being parsed. These are all invalid JSON.
+    const testCases = [
+      '"', // one quote read as both the opening and the closing one
+      '"a","b"',
+      '"a" "b"',
+      '"a"+"b"',
+      '"a\nb"', // raw control characters are illegal inside a JSON string
+      '"a\tb"',
+    ];
+
+    for (const input of testCases) {
+      expect(() => JSON.parse(input)).toThrowError();
+      expect(destr(input)).toStrictEqual(input);
+      expect(() => safeDestr(input)).toThrowError();
+    }
+  });
+
   describe("throws an error if it's a invalid JSON texts with safeDestr", () => {
     const testCases = [
       { input: "{     ", output: "Expected property name or" },
