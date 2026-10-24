@@ -34,6 +34,7 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
     return value;
   }
   if (
+    value.length > 1 &&
     value[0] === '"' &&
     value[value.length - 1] === '"' &&
     value.indexOf("\\") === -1

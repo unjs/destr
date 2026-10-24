@@ -131,6 +131,7 @@ describe("destr", () => {
       { input: '"Hello"', output: "Hello" },
       { input: ' "Hello" ', output: "Hello" },
       { input: ' "Invalid', output: ' "Invalid' },
+      { input: '"', output: '"' },
     ];
 
     for (const testCase of testCases) {
@@ -146,6 +147,7 @@ describe("destr", () => {
       { input: "[1,2,3]?", output: "Unexpected non-whitespace character" },
       { input: "invalid JSON text", output: "Invalid JSON" },
       { input: ' "Invalid', output: "Unterminated string in JSON at position" },
+      { input: '"', output: "Unterminated string in JSON" },
     ];
 
     for (const testCase of testCases) {
