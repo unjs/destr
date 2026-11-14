@@ -171,12 +171,32 @@ describe("destr", () => {
         input: '{ "constructor": { "prototype": null } }',
         output: {},
       },
+      {
+        input: '{ "car": { "constructor": { "prototype": {} } } }',
+        output: {},
+      },
     ];
 
     for (const testCase of testCases) {
       expect(() => safeDestr(testCase.input)).toThrowError(
         "[destr] Possible prototype pollution",
       );
+    }
+  });
+
+  it("allows safe constructor property with safeDestr", () => {
+    const testCases: Array<{ input: string; output: unknown }> = [
+      { input: '{ "constructor": "value" }', output: { constructor: "value" } },
+      { input: '{ "constructor": null }', output: { constructor: null } },
+      { input: '{ "constructor": 123 }', output: { constructor: 123 } },
+      {
+        input: '{ "car": { "constructor": "Ford", "model": "GT" } }',
+        output: { car: { constructor: "Ford", model: "GT" } },
+      },
+    ];
+
+    for (const testCase of testCases) {
+      expect(safeDestr(testCase.input)).toStrictEqual(testCase.output);
     }
   });
 

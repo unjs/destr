@@ -7,14 +7,17 @@ const suspectConstructorRx =
 
 const JsonSigRx = /^\s*["[{]|^\s*-?\d{1,16}(\.\d{1,17})?([Ee][+-]?\d+)?\s*$/;
 
+function isSuspectConstructor(key: string, value: any): boolean {
+  return (
+    key === "constructor" &&
+    value &&
+    typeof value === "object" &&
+    "prototype" in value
+  );
+}
+
 function jsonParseTransform(key: string, value: any): any {
-  if (
-    key === "__proto__" ||
-    (key === "constructor" &&
-      value &&
-      typeof value === "object" &&
-      "prototype" in value)
-  ) {
+  if (key === "__proto__" || isSuspectConstructor(key, value)) {
     warnKeyDropped(key);
     return;
   }
@@ -77,9 +80,20 @@ export function destr<T = unknown>(value: any, options: Options = {}): T {
   }
 
   try {
-    if (suspectProtoRx.test(value) || suspectConstructorRx.test(value)) {
+    if (suspectProtoRx.test(value)) {
       if (options.strict) {
         throw new Error("[destr] Possible prototype pollution");
+      }
+      return JSON.parse(value, jsonParseTransform);
+    }
+    if (suspectConstructorRx.test(value)) {
+      if (options.strict) {
+        return JSON.parse(value, (key, val) => {
+          if (isSuspectConstructor(key, val)) {
+            throw new Error("[destr] Possible prototype pollution");
+          }
+          return val;
+        });
       }
       return JSON.parse(value, jsonParseTransform);
     }
